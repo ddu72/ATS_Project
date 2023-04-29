@@ -1,12 +1,10 @@
-package ATS_Tests;
+package src.test.java;
+import src.main.java.*;
 
-import static org.junit.jupiter.api.Assertions.*;
-
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import src.*;
-
+import org.junit.jupiter.api.*;
 import java.time.LocalDate;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 class FaturaTest {
@@ -40,7 +38,11 @@ class FaturaTest {
 
     @Test
     void toStringTest(){
-        assertTrue(fatura.toString().equals("Periodo de 2023-1-1 a 2323-1-31")==true);
+        String nome = fatura.getNome();
+        double consumo = fatura.getConsumo();
+        double custo = fatura.getCusto();
+        Periodo p = fatura.getPeriodo();
+        assertSame("\nFatura para a casa de "+nome+"\nPeriodo de "+p.getInicio()+" a "+p.getFim()+"\nConusmo: "+consumo+"Kwh, Custo: "+custo+"\n", fatura.toString(),"Strings diferentes");
     }
 
 

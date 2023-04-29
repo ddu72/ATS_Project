@@ -1,14 +1,11 @@
 package src.test.java;
+import src.main.java.Simulador;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDate;
-import java.util.Scanner;
-import java.time.Month;
-import java.util.Scanner;
 
-import src.Simulador;
 
 public class SimuladorTest {
 

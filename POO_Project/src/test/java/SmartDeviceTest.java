@@ -7,8 +7,8 @@ import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.BeforeAll;
 //import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import src.Simulador;
-import src.SmartDevice;
+import src.main.java.*;
+
 
 public class SmartDeviceTest {
 

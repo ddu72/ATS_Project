@@ -6,9 +6,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import static src.SmartDevice.Modo.OFF;
-import src.Simulador;
-import src.SmartCamera;
+import static src.main.java.SmartDevice.Modo.OFF;
+import src.main.java.*;
+
 
 public class SmartCameraTest{
 

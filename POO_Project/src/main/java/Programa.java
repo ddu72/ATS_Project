@@ -1,9 +1,9 @@
-package src;
+package src.main.java;
 
 import java.io.*;
 import java.util.Scanner;
 
-import static src.Simulador.construirSimulador;
+import static src.main.java.Simulador.construirSimulador;
 
 public class Programa {
     private static String caminhoFicheirosObjeto = "presets_obj/";

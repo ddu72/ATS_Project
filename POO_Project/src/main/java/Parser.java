@@ -1,4 +1,4 @@
-package src;
+package src.main.java;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;

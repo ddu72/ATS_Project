@@ -1,4 +1,4 @@
-package src;
+package src.main.java;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -72,6 +72,19 @@ public class CasaInteligente implements Serializable, PendingChanges{
         this.devices.put(s.getID(), s);
     }
 
+    public void setOn(String s, boolean b) {
+        if (this.devices.get(s) != null) {
+            this.devices.get(s).setOn(b); //assume que nao recebe um clone
+            //se receber um clone e suposto meter de novo?
+        }
+    }
+
+
+    public void setAllOn(boolean b) {
+        for (SmartDevice smartDevice: this.devices.values()) {
+            smartDevice.setOn(b);
+        }
+    }
 
     /*
     Recebe uma lista de divisoes em String e mostra ao utilizador para escolher uma

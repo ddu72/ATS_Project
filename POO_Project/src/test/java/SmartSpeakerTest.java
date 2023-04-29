@@ -1,18 +1,13 @@
 package src.test.java;//package Testes;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static src.SmartDevice.Modo.OFF;
-import static src.SmartSpeaker.criarSmartSpeaker;
+import static src.main.java.SmartDevice.Modo.OFF;
+import static src.main.java.SmartSpeaker.criarSmartSpeaker;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import src.SmartCamera;
-import src.SmartDevice;
-import src.SmartSpeaker;
-import src.Simulador;
+import src.main.java.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

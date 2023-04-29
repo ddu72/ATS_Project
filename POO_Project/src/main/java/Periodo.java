@@ -1,4 +1,4 @@
-package src;
+package src.main.java;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class Periodo implements Serializable {
+
     private LocalDate inicio;
     private LocalDate fim;
 
@@ -17,6 +18,13 @@ public class Periodo implements Serializable {
     public Periodo(Periodo periodo) {
         this.inicio = periodo.inicio;
         this.fim = periodo.fim;
+    }
+    public LocalDate getInicio() {
+        return inicio;
+    }
+
+    public LocalDate getFim() {
+        return fim;
     }
 
     public static Periodo escolherPeriodo(List<Periodo> listaPeriodo, Scanner scanner) {

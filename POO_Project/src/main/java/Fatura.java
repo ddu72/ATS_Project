@@ -1,4 +1,4 @@
-package src;
+package src.main.java;
 
 import java.io.Serializable;
 import java.time.LocalDate;
@@ -41,6 +41,8 @@ public class Fatura implements Serializable {
         sb.append("\n");
         return sb.toString();
     }
+
+    public String getNome(){return this.nome;}
 
     public Periodo getPeriodo() {
         return this.periodo;

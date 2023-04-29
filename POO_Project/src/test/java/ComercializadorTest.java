@@ -1,11 +1,11 @@
-package ATS_Tests;
+package src.test.java;
+import src.main.java.*;
 
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import src.Comercializador;
-import src.*;
+import org.junit.jupiter.api.*;
+import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static src.main.java.SmartDevice.Modo.OFF;
 
 class ComercializadorTest {
 
@@ -21,13 +21,5 @@ class ComercializadorTest {
     void precoDiaPorDispositivoTest(){
         Comercializador comercializador1 = new Comercializador("José",10,20);
         SmartCamera smartCamera = new SmartCamera();
-
-
-
-
     }
-
-
-
-
 }
