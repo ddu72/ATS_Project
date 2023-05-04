@@ -1,4 +1,4 @@
-# Created at 2023-04-29T11:36:54.570
+# Created at 2023-05-02T02:16:20.698
 java.lang.RuntimeException: When finding method openSession
 	at org.apache.maven.surefire.api.util.ReflectionUtils.getMethod(ReflectionUtils.java:52)
 	at org.apache.maven.surefire.api.util.ReflectionUtils.invokeGetter(ReflectionUtils.java:75)
