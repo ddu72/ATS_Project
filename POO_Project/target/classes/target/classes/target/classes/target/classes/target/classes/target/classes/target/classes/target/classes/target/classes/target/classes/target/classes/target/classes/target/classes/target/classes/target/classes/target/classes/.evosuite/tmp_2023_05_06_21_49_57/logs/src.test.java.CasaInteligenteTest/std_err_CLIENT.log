@@ -1,0 +1,6 @@
+[MASTER] 21:50:11.023 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.util.LinkedList<E> : Type points to itself
+[MASTER] 21:50:13.978 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.util.function.Function<T, R> : Type points to itself
+[MASTER] 21:50:30.181 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.util.Enumeration<E> : Type points to itself
+[MASTER] 21:51:13.153 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.time.temporal.TemporalQuery<R> : Type points to itself
+[MASTER] 21:51:37.331 [TEST_EXECUTION_THREAD_0] ERROR AbstractStatement - Error assigning value of type FileAttribute[] defined at statement FileAttribute<InputStream>[] fileAttributeArray0 = (FileAttribute<InputStream>[]) Array.newInstance(FileAttribute.class, 7), assignment statement: fileAttributeArray0[0] = (FileAttribute<InputStream>) fileAttributeArray0; SUT=src.test.java.CasaInteligenteTest
+[MASTER] 21:51:38.801 [pool-2-thread-1] ERROR TestCluster - Failed to check cache for java.util.List<E> : Type points to itself

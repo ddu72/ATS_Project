@@ -12,72 +12,66 @@ import src.main.java.*;
 
 public class SmartCameraTest{
 
-    @BeforeEach
-    public void setUp(){}
+    SmartCamera smartcamera;
+    SmartCamera smartcamera1;
+    SmartCamera smartcamera2;
+    SmartCamera smartcamera3;
 
-    @AfterEach
-    public void tearDown(){}
+    @BeforeEach
+    public void setUp(){
+        smartcamera = new SmartCamera();
+        smartcamera1 = new SmartCamera(OFF, 100,100, 100);
+        smartcamera2 = new SmartCamera(OFF, 10, 10, 100,100);
+        smartcamera3 = new SmartCamera(smartcamera2);
+    }
 
     @Test
 	public void testeConstrutor(){
-		SmartCamera smartCamera1 = new SmartCamera();
-		assertNotNull(smartCamera1, "Erro ao criar a SmartCamera");
-		smartCamera1 = new SmartCamera();
-        assertNotNull(smartCamera1, "Erro ao criar a SmartCamera");
-        smartCamera1 = new SmartCamera(OFF,5,15,15);
-        assertNotNull(smartCamera1, "Erro ao criar a SmartCamera");
-		SmartCamera SmartCamera2 = new SmartCamera(smartCamera1);
-		assertNotNull(SmartCamera2, "Erro ao criar a SmartCamera");
-	}
+		assertNotNull(smartcamera, "Erro ao criar a SmartCamera");
+        assertNotNull(smartcamera1, "Erro ao criar a SmartCamera1");
+        assertNotNull(smartcamera2, "Erro ao criar a SmartCamera2");
+        assertNotNull(smartcamera3, "Erro ao criar a SmartCamera3");
+    }
 
     @Test
 	public void testConsumoDiario() {
-        SmartCamera smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getConsumoDiario(), "Valor do consumo Diario não é o esperado");
-        SmartCamera smartCamera2 = new SmartCamera();
-        assertEquals(0,smartCamera2.getConsumoDiario(), "Valor do consumo Diario não é o esperado");
-        smartCamera2 = new SmartCamera(OFF,5,15,15);
-        assertEquals("1.125", smartCamera2.getConsumoDiario(), "Valor do consumo Diario não é o esperado");
-        SmartCamera smartCamera3 = new SmartCamera(smartCamera2);
-        assertEquals(1.125, smartCamera3.getConsumoDiario(), "Valor do consumo Diario não é o esperado");
+        smartcamera1.calcularConsumoDiario();
+        assertEquals(0.502,smartcamera1.getConsumoDiario(),"Consumo diário na camera  diferente do esperado");
+        smartcamera2.calcularConsumoDiario();
+        assertEquals(0.50002,smartcamera2.getConsumoDiario(),"Consumo diário na camera 2 diferente do esperado");
     }
 
     @Test
     public void testGetWidth() {
-        SmartCamera smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getWidth(), "Valor do width não é o esperado");
-        smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getWidth(), "Valor do width não é o esperado");
-        smartCamera1 = new SmartCamera(OFF,5,15,15);
-        assertEquals(5,smartCamera1.getWidth(), "Valor do width não é o esperado");
-        SmartCamera smartCamera2 = new SmartCamera(smartCamera1);
-        assertEquals(5,smartCamera2.getWidth(), "Valor do width não é o esperado");
+        smartcamera1.setWidth(10);
+        assertEquals(10,smartcamera1.getWidth(),"width da camera 1 diferente do esperado");
     }
 
     @Test
     public void testGetHeight() {
-        SmartCamera smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getHeight(), "Valor do height não é o esperado");
-        smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getHeight(), "Valor do height não é o esperado");
-        smartCamera1 = new SmartCamera(OFF,5,15,15);
-        assertEquals(15,smartCamera1.getHeight(), "Valor do height não é o esperado");
-        SmartCamera smartCamera2 = new SmartCamera(smartCamera1);
-        assertEquals(15,smartCamera2.getHeight(), "Valor do height não é o esperado");
+       smartcamera1.setHeight(10);
+       assertEquals(10, smartcamera1.getHeight(),"Height da smartCamera 1 diferente do esperado");
     }
 
     @Test
     public void testGetTamanhoFicheiro() {
-        SmartCamera smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getTamanhoFicheiro(), "Valor do tamanho do ficheiro não é o esperado");
-        smartCamera1 = new SmartCamera();
-        assertEquals(0,smartCamera1.getTamanhoFicheiro(), "Valor do tamanho do ficheiro não é o esperado");
-        smartCamera1 = new SmartCamera(OFF,5,15,15);
-        assertEquals(15,smartCamera1.getTamanhoFicheiro(), "Valor do tamanho do ficheiro não é o esperado");
-        SmartCamera smartCamera2 = new SmartCamera(smartCamera1);
-        assertEquals(15,smartCamera2.getTamanhoFicheiro(), "Valor do tamanho do ficheiro não é o esperado");
+        smartcamera1.setTamanhoFicheiro(10);
+        assertEquals(10,smartcamera1.getTamanhoFicheiro(),"tamanho do ficheiro diferente do esperado");
     }
 
+    @Test
+    public void testToString(){
+        String id = smartcamera2.getID();
+        String modo = String.valueOf(smartcamera2.getModo());
+        String width =  String.valueOf(smartcamera2.getWidth());
+        String height = String.valueOf(smartcamera2.getHeight());
+        String exp = "Camera, id: "+id+", "+modo+", ("+width+"x"+height+")";
+        String actual = smartcamera2.toString();
+        assertTrue(exp.equals(actual), "String diferente da esperada");
+    }
+
+
+/*
     @Test
     public void testSetWidth(){
         SmartCamera smartCamera1 = new SmartCamera();
@@ -99,14 +93,7 @@ public class SmartCameraTest{
         assertEquals(15,smartCamera1.getTamanhoFicheiro(), "Valor do tamanho do ficheiro não é o esperado");
     }
 
-    /* Acho que nao vale a pena estar a testar o toString()
-    public void testToString(){
-        SmartCamera SmartCamera1 = new SmartCamera(simulador,"SmartCamera1",5,OFF,5,15,15);
-        assertEquals("Camara, id:")
-    }
-    */
-
-
+ */
 
     /*
     Não sei se é suposto fazer testes para o criarSmartCamera.

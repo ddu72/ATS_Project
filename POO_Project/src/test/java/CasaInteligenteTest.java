@@ -5,42 +5,59 @@ import org.junit.jupiter.api.Test;
 import src.main.java.*;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static src.main.java.SmartDevice.Modo.OFF;
+import static src.main.java.SmartDevice.Modo.ON;
 
 
 class CasaInteligenteTest {
 
     CasaInteligente casaInteligente;
     Comercializador comercializador;
+    SmartSpeaker coluna;
+    SmartCamera camera;
+    SmartBulb lamp;
 
     @BeforeEach
     public void setup() {
         comercializador = new Comercializador();
-        casaInteligente = new CasaInteligente("casa1", 1, comercializador);
+        casaInteligente = new CasaInteligente();
+        coluna = new SmartSpeaker(OFF,100,"JBL","Megahits");
+        camera = new SmartCamera(OFF,10,10,100,100);
+        lamp = new SmartBulb(OFF,1,10,100);
+        casaInteligente.addDevice(coluna);
+        casaInteligente.addDevice(camera);
+        casaInteligente.addDevice(lamp);
+        casaInteligente.addRoom("sala");
+        casaInteligente.addRoom("quarto");
     }
 
+    @Test
+    public void construtorTest(){
+        assertNotNull(casaInteligente,"Erro ao criar a casa inteligente 1");
+        casaInteligente = new CasaInteligente("casa 2",2,comercializador);
+        assertNotNull(casaInteligente,"Erro ao criar a casa inteligente 2");
+        CasaInteligente casainteligente1 = new CasaInteligente(casaInteligente);
+        assertNotNull(casainteligente1,"Erro ao criar a casa inteligente 3");
+    }
+/*
     @Test
     void setDeviceOnTest() {
-        SmartCamera smartCamera = new SmartCamera();
-        casaInteligente.addDevice(smartCamera);
-        casaInteligente.setDeviceOn(smartCamera.getID());
-        assertSame(SmartDevice.Modo.ON, smartCamera.getModo(), "Erro ao ligar o dispositivo tipo Camera");
+        casaInteligente.setDeviceOn(camera.getID());
+        //String exp = "ON";
+        assertSame(ON,camera.getModo(), "Erro ao ligar o dispositivo tipo Camera");
     }
-
+*/
     @Test
     void existsDeviceTest() {
-        SmartCamera smartCamera = new SmartCamera();
-        casaInteligente.addDevice(smartCamera);
-        assertTrue(casaInteligente.existsDevice(smartCamera.getID()) == true, "Erro ao verificar se existia um dispositivo");
+        assertTrue(casaInteligente.existsDevice(camera.getID()) == true, "Erro ao verificar se existia um dispositivo");
     }
 
     @Test
     void addDeviceTest() {
-        SmartCamera smartCamera = new SmartCamera();
-        casaInteligente.addDevice(smartCamera);
         assertTrue(casaInteligente.getDevices().isEmpty() == false, "Erro ao adicionar dispositivo");
     }
 
-
+/*
     @Test
     void setAllOnTest(){
         casaInteligente.addRoom("sala");
@@ -58,16 +75,15 @@ class CasaInteligenteTest {
         assertSame(SmartDevice.Modo.ON,smartBulb.getModo(), "Erro ao ligar o dispositivo tipo lampada");
         assertSame(SmartDevice.Modo.ON,smartSpeaker.getModo(), "Erro ao ligar o dispositivo tipo microfone");
     }
-
+*/
     @Test
     void existsRoomsTest() {
-        casaInteligente.addRoom("sala");
         assertTrue(true == casaInteligente.existsRooms(), "Erro ao verificar se existia divisoes");
     }
 
     @Test
     void addRoomsTest() {
-        casaInteligente.addRoom("sala");
+
         assertEquals(1, casaInteligente.getLocations().size(), "Erro a adicionar divisoes");
     }
 

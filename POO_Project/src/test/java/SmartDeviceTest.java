@@ -12,8 +12,17 @@ import src.main.java.*;
 
 public class SmartDeviceTest {
 
+    SmartDevice smartDevice;
+    SmartDevice smartDevice1;
+    SmartDevice smartDevice2;
+    SmartDevice smartDevice3;
+
     @BeforeEach
-    public void setUp(){}
+    public void setUp(){
+
+
+
+    }
 
     @AfterEach
     public void tearDown(){}
