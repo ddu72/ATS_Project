@@ -1,0 +1,88 @@
+* Starting client
+* Connecting to master process on port 3200
+* Analyzing classpath: 
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar
+  - /home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar
+  - /home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+* Finished analyzing classpath
+* Generating tests for class src.main.java.Programa
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+[MASTER] 09:48:34.150 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.Programa.seed
+* Loaded 0 tests from /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.Programa.seed
+* Total number of test goals: 
+  - Line 101
+  - Branch 19
+  - Exception 0
+  - MutationFactory 48
+  - Output 3
+  - Method 5
+  - MethodNoException 5
+  - CBranchFitnessFactory 19
+* Using seed 1683622112381
+* Starting evolution
+* Search finished after 46s and 262 generations, 60723 statements, best individual has fitness: 43.57777562457395
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 56%
+* Total number of goals: 101
+* Number of covered goals: 57
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 58%
+* Total number of goals: 19
+* Number of covered goals: 11
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 9
+* Number of covered goals: 9
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 92%
+* Total number of goals: 48
+* Number of covered goals: 44
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 33%
+* Total number of goals: 3
+* Number of covered goals: 1
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 5
+* Number of covered goals: 5
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 100%
+* Total number of goals: 5
+* Number of covered goals: 5
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 58%
+* Total number of goals: 19
+* Number of covered goals: 11
+* Generated 15 tests with total length 44
+* Resulting test suite's coverage: 75% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 17%
+* Compiling and checking tests
+* Permissions denied during test execution: 
+  - java.io.FilePermission: 
+         write /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/YJwX&jCfO\/q}OZw;-I~: 1
+  - java.lang.RuntimePermission: 
+         writeFileDescriptor: 3
+  - java.net.SocketPermission: 
+         connect,resolve 192.168.1.42:100: 1
+         connect,resolve 192.168.1.42:4: 1
+         listen,resolve localhost:2827: 1
+         and other 10 cases of action/name for this exception class
+* Writing JUnit test case 'Programa_ESTest' to /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/tmp_2023_05_09_09_35_25/tests
+* Done!
+

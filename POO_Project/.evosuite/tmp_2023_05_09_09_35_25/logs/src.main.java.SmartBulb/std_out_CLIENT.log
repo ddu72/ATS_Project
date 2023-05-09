@@ -1,0 +1,88 @@
+* Starting client
+* Connecting to master process on port 3888
+* Analyzing classpath: 
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar
+  - /home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar
+  - /home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+* Finished analyzing classpath
+* Generating tests for class src.main.java.SmartBulb
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+[MASTER] 09:46:13.444 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.SmartBulb.seed
+* Loaded 0 tests from /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.SmartBulb.seed
+* Total number of test goals: 
+  - Line 69
+  - Branch 33
+  - Exception 0
+  - MutationFactory 175
+  - Output 48
+  - Method 14
+  - MethodNoException 14
+  - CBranchFitnessFactory 33
+* Using seed 1683621971468
+* Starting evolution
+* Search finished after 50s and 122 generations, 40486 statements, best individual has fitness: 105.96825379270992
+* Writing sequences to pool
+* Minimizing test suite
+[MASTER] 09:47:14.846 [pool-2-thread-1] WARN  TestSuiteMinimizer - Minimization timeout. Roll back to original test suite
+[MASTER] 09:47:14.846 [pool-2-thread-1] WARN  TimeController - Phase MINIMIZATION lasted too long, 2 seconds more than allowed.
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 91%
+* Total number of goals: 69
+* Number of covered goals: 63
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 79%
+* Total number of goals: 33
+* Number of covered goals: 26
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 8
+* Number of covered goals: 8
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 76%
+* Total number of goals: 175
+* Number of covered goals: 133
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 33%
+* Total number of goals: 48
+* Number of covered goals: 16
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 14
+* Number of covered goals: 14
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 93%
+* Total number of goals: 14
+* Number of covered goals: 13
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 79%
+* Total number of goals: 33
+* Number of covered goals: 26
+* Generated 46 tests with total length 596
+* Resulting test suite's coverage: 81% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 53%
+* Compiling and checking tests
+* Permissions denied during test execution: 
+  - java.lang.RuntimePermission: 
+         writeFileDescriptor: 70
+  - java.net.SocketPermission: 
+         connect,resolve 192.168.1.42:3: 1
+         connect,resolve 192.168.1.42:4: 1
+         listen,resolve localhost:4: 1
+         and other 5 cases of action/name for this exception class
+* Writing JUnit test case 'SmartBulb_ESTest' to /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/tmp_2023_05_09_09_35_25/tests
+* Done!
+

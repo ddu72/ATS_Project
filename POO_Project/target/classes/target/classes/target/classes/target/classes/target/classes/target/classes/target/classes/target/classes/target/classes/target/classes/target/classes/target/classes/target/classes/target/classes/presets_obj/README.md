@@ -1,1 +1,0 @@
-# Esta diretoria serve para colocar os ficheiros de objetos que contem informacao sobre uma simulacao

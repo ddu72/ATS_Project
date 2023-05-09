@@ -1,1 +1,0 @@
-# Nesta diretoria sao guardados os varios estados do simulador

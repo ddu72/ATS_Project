@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
          http://maven.apache.org/xsd/maven-4.0.0.xsd">
-
     <modelVersion>4.0.0</modelVersion>
     <groupId>POO_Project</groupId>
     <artifactId>POO_Project</artifactId>
@@ -15,18 +14,17 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <junit.jupiter.version>5.9.2</junit.jupiter.version>
-        <evoSuitVersion>1.0.6</evoSuitVersion>
+        <jacoco.version>0.8.7</jacoco.version>
+        <evosuiteVersion>1.0.6</evosuiteVersion>
     </properties>
-
 
     <dependencyManagement>
         <dependencies>
-            <!-- Junit Maven Dependencies -->
-            <!-- you need at least JUnit Platform and JUnit Jupiter to write tests in JUnit 5 -->
+            <!--Junit e maven5-->
             <dependency>
                 <groupId>org.junit.jupiter</groupId>
                 <artifactId>junit-jupiter-engine</artifactId>
-                <version>{junit.jupiter.version}</version>
+                <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -43,30 +41,43 @@
                 <scope>test</scope>
             </dependency>
 
-            <!-- evosuit -->
-            <dependency>
-                <groupId>org.evosuite</groupId>
-                <artifactId>evosuite-standalone-runtime</artifactId>
-                <version>1.0.6</version>
+            <!--<dependency>
+                <groupId>org.junit</groupId>
+                <artifactId>junit-bom</artifactId>
+                <version>5.9.2</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>-->
+            <!--<dependency>
+                <groupId>org.junit.jupiter</groupId>
+                <artifactId>junit-jupiter</artifactId>
+                <version>${junit.jupiter.version}</version>
                 <scope>test</scope>
-            </dependency>
-            <dependency>
-                <groupId>junit</groupId>
-                <artifactId>junit</artifactId>
-                <version>4.12.2</version>
-                <scope>test</scope>
-            </dependency>
+            </dependency>-->
 
+            <!--mutation-->
             <dependency>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-junit5-plugin</artifactId>
                 <version>0.8</version>
             </dependency>
 
+
+            <!-- evosuit-->
+            <dependency>
+                <groupId>org.evosuite</groupId>
+                <artifactId>evosuite-standalone-runtime</artifactId>
+                <version>${evosuiteVersion}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>junit</groupId>
+                <artifactId>junit</artifactId>
+                <version>5.9.2</version>
+                <scope>test</scope>
+            </dependency>
         </dependencies>
     </dependencyManagement>
-
-    <!-- esta dependencia tem que estar aqui porque senão da erro ao gerar os testes -->
     <dependencies>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -75,10 +86,28 @@
         </dependency>
     </dependencies>
 
-
     <build>
         <plugins>
-            <!-- If you want the tests to be executed during the maven build, you will have to configure maven-surefire-plugin -->
+            <plugin>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.8.1</version>
+            </plugin>
+            <plugin>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M6</version>
+            </plugin>
+
+            <plugin>
+                <groupId>org.evosuite.plugins</groupId>
+                <artifactId>evosuite-maven-plugin</artifactId>
+                <version>${evosuiteVersion}</version>
+                <executions><execution>
+                    <goals> <goal> prepare </goal> </goals>
+                    <phase> process-test-classes </phase>
+                </execution></executions>
+            </plugin>
+
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
@@ -90,46 +119,116 @@
                             <value>org.evosuite.runtime.InitializingListener</value>
                         </property>
                     </properties>
-                    <additionalClasspathElements>
-                        <additionalClasspathElement>src/test/java/</additionalClasspathElement>
-                    </additionalClasspathElements>
                 </configuration>
             </plugin>
 
-            <!-- evosuit -->
-            <!--<plugin>
-                <groupId>org.evosuite.plugins</groupId>
-                <artifactId>evosuite-maven-plugin</artifactId>
-                <version>1.0.6</version>
-                <dependencies>
-                    <dependency>
-                        <groupId>junit</groupId>
-                        <artifactId>junit</artifactId>
-                        <version>4.12</version>
-                    </dependency>
-                </dependencies>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>build-helper-maven-plugin</artifactId>
+                <version>1.8</version>
                 <executions>
                     <execution>
+                        <id>add-test-source</id>
+                        <phase>generate-test-sources</phase>
                         <goals>
-                            <goal>prepare</goal>
+                            <goal>add-test-source</goal>
                         </goals>
-                        <phase>process-test-classes</phase>
+                        <configuration>
+                            <sources>
+                                <source>$.evosuite/evosuite-tests</source>
+                            </sources>
+                        </configuration>
                     </execution>
                 </executions>
-            </plugin>-->
-
-            <plugin>
-                <groupId>org.evosuite.plugins</groupId>
-                <artifactId>evosuite-maven-plugin</artifactId>
-                <version>1.0.6</version>
             </plugin>
 
-            <!-- pit for mutation -->
             <plugin>
                 <groupId>org.pitest</groupId>
                 <artifactId>pitest-maven</artifactId>
-                <version>LATEST</version>
+                <version>1.3.0</version>
+                <dependencies>
+                    <dependency>
+                        <groupId>org.pitest</groupId>
+                        <artifactId>pitest-junit5-plugin</artifactId>
+                        <version>0.3</version>
+                    </dependency>
+                </dependencies>
+                <configuration>
+                    <outputFormats>
+                        <outputFormat>XML</outputFormat>
+                        <outputFormat>HTML</outputFormat>
+                    </outputFormats>
+                    <exportLineCoverage>true</exportLineCoverage>
+                    <!--We want each report to override the former one-->
+                    <timestampedReports>false</timestampedReports>
+                </configuration>
             </plugin>
+
+
+            <!-- <plugin>
+                <groupId>org.jacoco</groupId>
+                <artifactId>jacoco-maven-plugin</artifactId>
+                <version>0.8.7</version>
+                <executions>
+                    <execution>
+                        <id>prepare-agent</id>
+                        <goals>
+                            <goal>prepare-agent</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>report</id>
+                        <phase>prepare-package</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                    </execution>
+                    <execution>
+                        <id>post-unit-test</id>
+                        <phase>test</phase>
+                        <goals>
+                            <goal>report</goal>
+                        </goals>
+                        <configuration>
+                             Sets the path to the file which contains the execution data.
+
+                            <dataFile>target/jacoco.exec</dataFile>
+                             Sets the output directory for the code coverage report.
+                            <outputDirectory>target/jacoco-ut</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+                <configuration>
+                    <systemPropertyVariables>
+                        <jacoco-agent.destfile>target/jacoco.exec</jacoco-agent.destfile>
+                    </systemPropertyVariables>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.5</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>-->
+
+
+
+
 
 
         </plugins>
@@ -142,18 +241,13 @@
             <url>http://www.evosuite.org/m2</url>
         </pluginRepository>
     </pluginRepositories>
-
-
-    <!-- Junit HTML Reports -->
-    <!-- Just run mvn site command and the HTML report will be generated in the target/site/ directory. -->
-    <!--<reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-report-plugin</artifactId>
-                <version>2.22.0</version>
-            </plugin>
-        </plugins>
-    </reporting>-->
+    <repositories>
+        <repository>
+            <id>EvoSuite</id>
+            <name>EvoSuite Repository</name>
+            <url>http://www.evosuite.org/m2</url>
+        </repository>
+    </repositories>
 
 </project>
+

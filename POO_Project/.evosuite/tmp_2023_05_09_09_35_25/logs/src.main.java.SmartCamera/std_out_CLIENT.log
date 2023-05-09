@@ -1,0 +1,89 @@
+* Starting client
+* Connecting to master process on port 18986
+* Analyzing classpath: 
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar
+  - /home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar
+  - /home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+* Finished analyzing classpath
+* Generating tests for class src.main.java.SmartCamera
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+[MASTER] 09:50:23.508 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.SmartCamera.seed
+* Loaded 0 tests from /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/src.main.java.SmartCamera.seed
+* Total number of test goals: 
+  - Line 73
+  - Branch 19
+  - Exception 0
+  - MutationFactory 157
+  - Output 57
+  - Method 15
+  - MethodNoException 15
+  - CBranchFitnessFactory 19
+* Using seed 1683622221719
+* Starting evolution
+* Search finished after 41s and 419 generations, 115964 statements, best individual has fitness: 82.95833279502912
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 90%
+* Total number of goals: 73
+* Number of covered goals: 66
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 89%
+* Total number of goals: 19
+* Number of covered goals: 17
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 11
+* Number of covered goals: 11
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 80%
+* Total number of goals: 157
+* Number of covered goals: 126
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 32%
+* Total number of goals: 57
+* Number of covered goals: 18
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 15
+* Number of covered goals: 15
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 87%
+* Total number of goals: 15
+* Number of covered goals: 13
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 89%
+* Total number of goals: 19
+* Number of covered goals: 17
+* Generated 30 tests with total length 76
+* Resulting test suite's coverage: 83% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 54%
+* Compiling and checking tests
+* Permissions denied during test execution: 
+  - java.io.FilePermission: 
+         write , : 1
+         delete | -> Exemplo: ON,1920,1080,50                                 |: 1
+  - java.lang.RuntimePermission: 
+         writeFileDescriptor: 1
+  - java.net.SocketPermission: 
+         connect,resolve 192.168.1.42:4: 1
+         listen,resolve localhost:1768: 1
+         connect,resolve 192.168.1.42:4252: 1
+         and other 14 cases of action/name for this exception class
+* Writing JUnit test case 'SmartCamera_ESTest' to /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/tmp_2023_05_09_09_35_25/tests
+* Done!
+
