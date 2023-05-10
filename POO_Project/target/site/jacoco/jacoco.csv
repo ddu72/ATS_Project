@@ -1,0 +1,16 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+POO_Project,src.main.java,SmartDevice.Modo,0,24,0,0,0,2,0,1,0,1
+POO_Project,src.main.java,CasaInteligente,649,182,59,5,156,44,65,11,33,11
+POO_Project,src.main.java,SmartDevice,206,90,26,0,54,33,26,8,13,8
+POO_Project,src.main.java,Parser,428,0,41,0,106,0,30,0,7,0
+POO_Project,src.main.java,SmartCamera,141,138,6,0,26,47,6,12,3,12
+POO_Project,src.main.java,LinhaIncorretaException,4,0,0,0,2,0,1,0,1,0
+POO_Project,src.main.java,SmartBulb,154,146,18,4,26,43,12,13,3,11
+POO_Project,src.main.java,Comercializador,334,94,20,0,83,29,29,4,19,4
+POO_Project,src.main.java,Simulador,1704,96,136,0,454,27,124,3,56,3
+POO_Project,src.main.java,Estatisticas,408,0,34,0,109,0,28,0,11,0
+POO_Project,src.main.java,Periodo,101,52,9,5,26,9,12,3,5,3
+POO_Project,src.main.java,Programa,362,0,16,0,104,0,14,0,6,0
+POO_Project,src.main.java,Formula,68,2,8,0,13,1,12,1,8,1
+POO_Project,src.main.java,SmartSpeaker,183,164,28,12,35,55,20,18,4,14
+POO_Project,src.main.java,Fatura,123,0,0,0,29,0,8,0,8,0

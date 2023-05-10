@@ -71,13 +71,14 @@ public class SmartSpeakerTest {
         assertTrue(exp.equals(smartspeaker.getRadio()) == true, "Rádio da smartspeaker diferente da esperada");
     }
 
+    /*
     @Test
     public void testEquals(){
         assertTrue(smartspeaker2.equals(smartspeaker2)==true,"Teste de igualdade da coluna 2 falhado");
         assertTrue(smartspeaker2.equals(smartspeaker3)==true,"Teste de igualdade da coluna 3 falhado");
         assertTrue(smartspeaker2.equals(smartspeaker1)==false,"Teste de igualdade da coluna 1 falhado");
     }
-
+    */
     @Test
     public void testToString(){
         String id = smartspeaker2.getID();

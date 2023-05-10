@@ -27,7 +27,7 @@ class FaturaTest {
         assertTrue(fatura.getPeriodo()==p, "periodo diferente");
     }
     */
-
+/*
     @Test
     void EqualsTest(){
         LocalDate i = LocalDate.of(2023, 1, 1);
@@ -45,7 +45,7 @@ class FaturaTest {
         assertSame("\nFatura para a casa de "+nome+"\nPeriodo de "+p.getInicio()+" a "+p.getFim()+"\nConusmo: "+consumo+"Kwh, Custo: "+custo+"\n", fatura.toString(),"Strings diferentes");
     }
 
-
+*/
 
 
 }

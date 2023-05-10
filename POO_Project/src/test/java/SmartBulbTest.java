@@ -100,9 +100,11 @@ public class SmartBulbTest{
         SmartBulb smartBulb1 = new SmartBulb(simulador,"SmartBulb1",OFF,0,15);
         assertEquals(15,smartBulb1.getTamanho(),  "Valor do tamanho não é o esperado");
         SmartBulb smartBulb2 = new SmartBulb(smartBulb1);
+
+
         assertEquals(15,smartBulb2.getTone(),  "Valor do tamanho não é o esperado");
     }
-    
+ */
 
 
     /*
@@ -122,11 +124,14 @@ public class SmartBulbTest{
     }
 
     //testar o clone nao faz sentido uma vez que nao é o mesmo objeto
+    /*
     @Test
     public void testClone(){
         SmartBulb exp = (SmartBulb) smartBulb3.clone();
 
         assertTrue(exp==smartBulb3,"Objetos diferentes");
     }
+    */
+
 
 }
