@@ -1,4 +1,5 @@
 package src.test.java;
+import src.test.java.*;
 import src.main.java.Simulador;
 
 import org.junit.jupiter.api.Test;
