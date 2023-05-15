@@ -1,14 +1,14 @@
-package src.main.java;
+package main.java;
 
 import java.io.*;
 import java.time.LocalDate;
 import java.util.*;
 import java.util.stream.Collectors;
 
-import static src.main.java.SmartBulb.criarSmartBulb;
-import static src.main.java.SmartCamera.criarSmartCamera;
-import static src.main.java.SmartDevice.escolherDispositivo;
-import static src.main.java.SmartSpeaker.criarSmartSpeaker;
+import static main.java.SmartBulb.criarSmartBulb;
+import static main.java.SmartCamera.criarSmartCamera;
+import static main.java.SmartDevice.escolherDispositivo;
+import static main.java.SmartSpeaker.criarSmartSpeaker;
 
 
 public class Simulador implements Serializable{

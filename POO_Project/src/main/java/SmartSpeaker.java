@@ -1,6 +1,6 @@
-package src.main.java;
+package main.java;
 
-import src.main.java.SmartDevice;
+import main.java.SmartDevice;
 
 import java.time.LocalDateTime;
 import java.util.Random;

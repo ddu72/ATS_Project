@@ -1,6 +1,6 @@
-package src.test.java;
-import src.test.java.*;
-import src.main.java.Simulador;
+package test.java;
+import main.java.*;
+import main.java.Simulador;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;

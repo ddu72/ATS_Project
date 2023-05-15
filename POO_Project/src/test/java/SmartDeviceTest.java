@@ -1,4 +1,4 @@
-package src.test.java;//package Testes;
+package test.java;//package Testes;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -7,7 +7,7 @@ import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.BeforeAll;
 //import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
-import src.main.java.*;
+import main.java.*;
 
 
 public class SmartDeviceTest {

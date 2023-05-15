@@ -1,6 +1,6 @@
-package src.test.java;
+package test.java;
 import org.junit.jupiter.api.BeforeEach;
-import src.main.java.*;
+import main.java.*;
 import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 import java.time.LocalDate;

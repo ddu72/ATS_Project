@@ -1,11 +1,11 @@
-package src.test.java;
-import src.main.java.*;
+package test.java;
+import main.java.*;
 
 import org.junit.jupiter.api.*;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static src.main.java.SmartDevice.Modo.OFF;
+import static main.java.SmartDevice.Modo.OFF;
 
 class ComercializadorTest {
 

@@ -1,13 +1,13 @@
-package src.test.java;//package Testes;
+package test.java;//package Testes;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static src.main.java.SmartDevice.Modo.OFF;
-import static src.main.java.SmartSpeaker.criarSmartSpeaker;
+import static main.java.SmartDevice.Modo.OFF;
+import static main.java.SmartSpeaker.criarSmartSpeaker;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.main.java.*;
+import main.java.*;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;

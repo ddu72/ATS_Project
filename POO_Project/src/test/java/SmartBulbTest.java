@@ -1,7 +1,7 @@
-package src.test.java;//package Testes;
-import src.main.java.*;
+package test.java;//package Testes;
+import main.java.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static src.main.java.SmartDevice.Modo.OFF;
+import static main.java.SmartDevice.Modo.OFF;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;

@@ -1,5 +1,5 @@
-package src.test.java;
-import src.main.java.*;
+package test.java;
+import main.java.*;
 
 import org.junit.jupiter.api.*;
 import java.time.LocalDate;

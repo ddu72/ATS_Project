@@ -1,12 +1,12 @@
-package src.test.java;
+package test.java;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import src.main.java.*;
+import main.java.*;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static src.main.java.SmartDevice.Modo.OFF;
-import static src.main.java.SmartDevice.Modo.ON;
+import static main.java.SmartDevice.Modo.OFF;
+import static main.java.SmartDevice.Modo.ON;
 
 
 class CasaInteligenteTest {

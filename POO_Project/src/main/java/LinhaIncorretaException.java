@@ -1,4 +1,4 @@
-package src.main.java;
+package main.java;
 
 public class LinhaIncorretaException extends Exception{
     public LinhaIncorretaException() {
