@@ -4,6 +4,8 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import main.java.*;
 
+import java.util.*;
+import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 import static main.java.SmartDevice.Modo.OFF;
 import static main.java.SmartDevice.Modo.ON;
@@ -24,6 +26,8 @@ class CasaInteligenteTest {
         coluna = new SmartSpeaker(OFF,100,"JBL","Megahits");
         camera = new SmartCamera(OFF,10,10,100,100);
         lamp = new SmartBulb(OFF,1,10,100);
+        casaInteligente.setNome("CasaTeste");
+        casaInteligente.setNif(100);
         casaInteligente.addDevice(coluna);
         casaInteligente.addDevice(camera);
         casaInteligente.addDevice(lamp);
@@ -38,15 +42,24 @@ class CasaInteligenteTest {
         assertNotNull(casaInteligente,"Erro ao criar a casa inteligente 2");
         CasaInteligente casainteligente1 = new CasaInteligente(casaInteligente);
         assertNotNull(casainteligente1,"Erro ao criar a casa inteligente 3");
+
+        Map<String, SmartDevice> originalDevices = casaInteligente.getDevices();
+        Map<String, SmartDevice> copyDevices = casainteligente1.getDevices();
+        assertEquals(originalDevices.size(), copyDevices.size(),"smartdevices inesperado");
+        for (Map.Entry<String, SmartDevice> entry : originalDevices.entrySet()) {
+            String deviceName = entry.getKey();
+            SmartDevice originalDevice = entry.getValue();
+            SmartDevice copyDevice = copyDevices.get(deviceName);
+            assertNotNull(copyDevice);
+            // Assuming Device class implements the clone method correctly
+            assertEquals(originalDevice, copyDevice);
+        }
+
+
+        assertEquals(casaInteligente.getLocations(),casainteligente1.getLocations(),"locations diferentes");
+
     }
-/*
-    @Test
-    void setDeviceOnTest() {
-        casaInteligente.setDeviceOn(camera.getID());
-        //String exp = "ON";
-        assertSame(ON,camera.getModo(), "Erro ao ligar o dispositivo tipo Camera");
-    }
-*/
+
     @Test
     void existsDeviceTest() {
         assertTrue(casaInteligente.existsDevice(camera.getID()) == true, "Erro ao verificar se existia um dispositivo");

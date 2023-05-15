@@ -1,0 +1,41 @@
+* Starting client
+* Connecting to master process on port 11718
+* Analyzing classpath: 
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes
+  - /home/rogan/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar
+  - /home/rogan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar
+  - /home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar
+  - /home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+  - /home/rogan/.m2/repository/org/junit/vintage/junit-vintage-engine/5.9.2/junit-vintage-engine-5.9.2.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar
+* Finished analyzing classpath
+* Generating tests for class main.java.Simulador
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+[MASTER] 23:08:19.462 [pool-2-thread-1] WARN  TestSuiteSerialization - Cannot load tests because file does not exist: /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/main.java.Simulador.seed
+* Loaded 0 tests from /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/main.java.Simulador.seed
+* Total number of test goals: 
+  - Line 484
+  - Branch 165
+  - Exception 0
+  - MutationFactory 327
+  - Output 66
+  - Method 47
+  - MethodNoException 47
+  - CBranchFitnessFactory 165
+* Using seed 1684188494144
+* Starting evolution

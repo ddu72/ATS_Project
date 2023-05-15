@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="71df1ffd-314e-44fe-a6c1-f714f4c79f8f" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/test/java/EstatisticasTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Fatura.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Fatura.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Simulador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Simulador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartBulb.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartBulb.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/SmartCamera.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/SmartCamera.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/CasaInteligenteTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/CasaInteligenteTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/ComercializadorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ComercializadorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/FaturaTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/FaturaTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/PeriodoTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/PeriodoTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SimuladorTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SimuladorTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SmartBulbTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SmartBulbTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SmartCameraTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SmartCameraTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SmartDeviceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SmartDeviceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/SmartSpeakerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/SmartSpeakerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/Fatura.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/Fatura.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/SmartBulb.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/SmartBulb.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/main/java/SmartCamera.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/main/java/SmartCamera.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="useMavenConfig" value="true" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectCodeStyleSettingsMigration">
+    <option name="version" value="2" />
+  </component>
+  <component name="ProjectId" id="2P63M8muOzC3YiXe5h3N9gWU7tG" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Downloaded.Files.Path.Enabled&quot;: &quot;false&quot;,
+    &quot;JAVA_HOME&quot;: &quot;/usr/lib/jvm/java-1.8.0-openjdk-amd64&quot;,
+    &quot;Repository.Attach.Annotations&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.JavaDocs&quot;: &quot;false&quot;,
+    &quot;Repository.Attach.Sources&quot;: &quot;false&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;cores_evosuite_param&quot;: &quot;1&quot;,
+    &quot;evosuite_gui_dialog_height&quot;: &quot;652&quot;,
+    &quot;evosuite_gui_dialog_width&quot;: &quot;580&quot;,
+    &quot;evosuite_jar_location&quot;: &quot;/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/evosuite-1.0.6.jar&quot;,
+    &quot;execution_mode&quot;: &quot;MVN&quot;,
+    &quot;last_directory_selection&quot;: &quot;/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/generated-test-sources/test-annotations&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project&quot;,
+    &quot;memory_evosuite_param&quot;: &quot;2000&quot;,
+    &quot;mvn_location&quot;: &quot;&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.1539267&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;target_folder_evosuite_param&quot;: &quot;src/evo&quot;,
+    &quot;time_evosuite_param&quot;: &quot;3&quot;
+  }
+}</component>
+  <component name="RunManager" selected="JUnit.SimuladorTest.testConstruirSimulador">
+    <configuration name="EstatisticasTest.testConstrutor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.EstatisticasTest" />
+      <option name="METHOD_NAME" value="testConstrutor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="EstatisticasTest.testEstatisticas1" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.EstatisticasTest" />
+      <option name="METHOD_NAME" value="testEstatisticas1" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FaturaTest.testConstrutor" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.FaturaTest" />
+      <option name="METHOD_NAME" value="testConstrutor" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FaturaTest.toStringTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.FaturaTest" />
+      <option name="METHOD_NAME" value="toStringTest" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="SimuladorTest.testConstruirSimulador" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="test.java.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="test.java" />
+      <option name="MAIN_CLASS_NAME" value="test.java.SimuladorTest" />
+      <option name="METHOD_NAME" value="testConstruirSimulador" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed (1)" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="main in POO_Project" type="JUnit" factoryName="JUnit" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <option name="MAIN_CLASS_NAME" value="" />
+      <option name="METHOD_NAME" value="" />
+      <option name="TEST_OBJECT" value="directory" />
+      <dir value="$PROJECT_DIR$/src/main" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Unnamed" type="PIT" factoryName="PIT Runner" REPORT_DIR="$PROJECT_DIR$/target/report" SOURCE_DIRS="$PROJECT_DIR$/target/generated-sources/annotations" TARGET_CLASSES="POO_Project.*" TARGET_TESTS="" otherParams="--outputFormats XML,HTML" nameIsGenerated="true">
+      <module name="POO_Project" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="PIT" factoryName="PIT Runner" REPORT_DIR="$PROJECT_DIR$/target/report" SOURCE_DIRS="$PROJECT_DIR$/target/generated-sources/annotations" TARGET_CLASSES="POO_Project.*" TARGET_TESTS="" otherParams="--outputFormats XML,HTML">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <list>
+      <item itemvalue="JUnit.Unnamed (1)" />
+      <item itemvalue="JUnit.main in POO_Project" />
+      <item itemvalue="JUnit.EstatisticasTest.testConstrutor" />
+      <item itemvalue="JUnit.EstatisticasTest.testEstatisticas1" />
+      <item itemvalue="JUnit.FaturaTest.testConstrutor" />
+      <item itemvalue="JUnit.FaturaTest.toStringTest" />
+      <item itemvalue="JUnit.SimuladorTest.testConstruirSimulador" />
+      <item itemvalue="PIT Runner.Unnamed" />
+    </list>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JUnit.SimuladorTest.testConstruirSimulador" />
+        <item itemvalue="JUnit.EstatisticasTest.testEstatisticas1" />
+        <item itemvalue="JUnit.EstatisticasTest.testConstrutor" />
+        <item itemvalue="JUnit.FaturaTest.toStringTest" />
+        <item itemvalue="JUnit.FaturaTest.testConstrutor" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="71df1ffd-314e-44fe-a6c1-f714f4c79f8f" name="Changes" comment="" />
+      <created>1682763653521</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1682763653521</updated>
+    </task>
+    <servers />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/FaturaTest.java</url>
+          <line>55</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/FaturaTest.java</url>
+          <line>54</line>
+          <option name="timeStamp" value="20" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-method">
+          <url>file://$PROJECT_DIR$/src/test/java/FaturaTest.java</url>
+          <line>47</line>
+          <properties class="test.java.FaturaTest" method="toStringTest">
+            <option name="EMULATED" value="true" />
+            <option name="WATCH_EXIT" value="false" />
+          </properties>
+          <option name="timeStamp" value="21" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+  <component name="XSLT-Support.FileAssociations.UIState">
+    <expand />
+    <select />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/POO_Project$CasaInteligenteTest.ic" NAME="CasaInteligenteTest Coverage Results" MODIFIED="1682765177341" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="idea" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false">
+      <FILTER>src.test.java.*</FILTER>
+    </SUITE>
+  </component>
+</project>

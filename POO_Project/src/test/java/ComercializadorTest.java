@@ -1,6 +1,6 @@
 package test.java;
 import main.java.*;
-
+import java.util.Random;
 import org.junit.jupiter.api.*;
 import java.util.Random;
 
@@ -9,17 +9,25 @@ import static main.java.SmartDevice.Modo.OFF;
 
 class ComercializadorTest {
 
-    Comercializador comercializador;
 
-    @BeforeEach
-    public void setup(){
-        comercializador = new Comercializador();
+    @Test
+    void parseTest(){
+        Random r = new Random();
+        Comercializador comercializador = Comercializador.parse("Test Comercializador", r);
+
+        // Assert the expected values
+        assertNotNull(comercializador);
+        assertEquals("Test Comercializador", comercializador.getNome());
+        assertTrue(comercializador.getCustoDiarioKwh() >= 0.05 && comercializador.getCustoDiarioKwh() <= 0.15);
+        assertTrue(comercializador.getFatorImpostos() >= 1 && comercializador.getFatorImpostos() <= 2);
     }
-
-
+/*
     @Test
     void precoDiaPorDispositivoTest(){
         Comercializador comercializador1 = new Comercializador("José",10,20);
-        SmartCamera smartCamera = new SmartCamera();
+        SmartCamera cam = new SmartCamera(OFF, 10, 10, 100,100);
+        comercializador1.precoDiaPorDispositivo(cam,comercializador1.getCustoDiarioKwh(),comercializador1.getFatorImpostos());
     }
+
+ */
 }

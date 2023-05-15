@@ -2,7 +2,8 @@ package test.java;//package Testes;
 import main.java.*;
 import static org.junit.jupiter.api.Assertions.*;
 import static main.java.SmartDevice.Modo.OFF;
-
+import main.java.SmartBulb;
+import java.util.Scanner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 //import org.junit.jupiter.api.BeforeAll;
@@ -21,7 +22,7 @@ public class SmartBulbTest{
 
     @BeforeEach
     public void setUp() {
-         smartBulb = new SmartBulb();
+        smartBulb = new SmartBulb();
          smartBulb1 = new SmartBulb(OFF,120,25);
          smartBulb2 = new SmartBulb(120);
          smartBulb3 = new SmartBulb(OFF,120,25,50);
@@ -32,10 +33,17 @@ public class SmartBulbTest{
     @Test
     public void testeConstrutor(){
         assertNotNull(smartBulb, "Erro ao criar a SmartBulb");
+        double custo = 0.5 + (1 * 2.5);
+        assertEquals(custo,smartBulb.getConsumoDiario());
         assertNotNull(smartBulb1, "Erro ao criar a SmartBulb1");
+        custo = 0.5+(120*2.5);
+        assertEquals(custo,smartBulb1.getConsumoDiario());
         assertNotNull(smartBulb2, "Erro ao criar a SmartBulb2");
+        assertEquals(custo,smartBulb2.getConsumoDiario());
         assertNotNull(smartBulb3, "Erro ao criar a SmartBulb3");
+        assertEquals(50,smartBulb3.getConsumoDiario());
         assertNotNull(smartBulb4, "Erro ao criar a SmartBulb4");
+        assertEquals(50,smartBulb4.getConsumoDiario());
 
    }
     /*
@@ -53,20 +61,22 @@ public class SmartBulbTest{
 
     @Test
     public void testSetTone(){
-        smartBulb.setTone(3);
-        assertEquals(2,smartBulb.getTone(), "Valor da tonalidade da smartBulb não é o esperado");
+        int quente = smartBulb.WARM;
+        int neutro = smartBulb.NEUTRAL;
+        int frio = smartBulb.COLD;
+        assertEquals(neutro,smartBulb.getTone(), "Valor da tonalidade da smartBulb não é o esperado");
 
-        smartBulb1.setTone(-1);
-        assertEquals(0,smartBulb1.getTone(), "Valor da tonalidade da smartBulb1 não é o esperado");
+        smartBulb1.setTone(frio-1);
+        assertEquals(frio,smartBulb1.getTone(), "Valor da tonalidade da smartBulb1 não é o esperado");
 
-        smartBulb2.setTone(0);
-        assertEquals(0,smartBulb2.getTone(), "Valor da tonalidade da smartBulb2 não é o esperado");
+        smartBulb2.setTone(frio+1);
+        assertEquals(neutro,smartBulb2.getTone(), "Valor da tonalidade da smartBulb2 não é o esperado");
 
-        smartBulb3.setTone(1);
-        assertEquals(1,smartBulb3.getTone(), "Valor da tonalidade da smartBulb3 não é o esperado");
+        smartBulb3.setTone(quente+1);
+        assertEquals(quente,smartBulb3.getTone(), "Valor da tonalidade da smartBulb3 não é o esperado");
 
-        smartBulb4.setTone(2);
-        assertEquals(2,smartBulb4.getTone(), "Valor da tonalidade da smartBulb4 não é o esperado");
+        smartBulb4.setTone(quente-1);
+        assertEquals(neutro,smartBulb4.getTone(), "Valor da tonalidade da smartBulb4 não é o esperado");
 
 
     }
@@ -107,11 +117,6 @@ public class SmartBulbTest{
  */
 
 
-    /*
-    Não sei se é suposto fazer testes para o criarSmartBulb.
-    Se for, o que é que é o scanner?
-    */
-
     @Test
     public void testToString(){
         String id = smartBulb3.getID();
@@ -124,14 +129,27 @@ public class SmartBulbTest{
     }
 
     //testar o clone nao faz sentido uma vez que nao é o mesmo objeto
-    /*
+
     @Test
     public void testClone(){
-        SmartBulb exp = (SmartBulb) smartBulb3.clone();
+        SmartBulb cloned = smartBulb3.clone();
+        assertNotSame(smartBulb3, cloned);
 
-        assertTrue(exp==smartBulb3,"Objetos diferentes");
+        assertEquals(smartBulb3.getModo(), cloned.getModo());
+        assertEquals(smartBulb3.getCustoInstalacao(), cloned.getCustoInstalacao());
+        assertEquals(smartBulb3.getID(), cloned.getID());
+        assertEquals(smartBulb3.getTone(),cloned.getTone());
+        assertEquals(smartBulb3.getTamanho(),cloned.getTamanho());
+        assertEquals(smartBulb3.getConsumoDiario(),cloned.getConsumoDiario());
     }
-    */
+
+    @Test
+    public void testCriarSmartCamera(){
+        String userInput = "OFF,WARM,6.3";
+        Scanner scanner = new Scanner(userInput);
+
+
+    }
 
 
 }
