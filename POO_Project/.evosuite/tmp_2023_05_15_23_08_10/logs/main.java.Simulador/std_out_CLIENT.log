@@ -39,3 +39,57 @@
   - CBranchFitnessFactory 165
 * Using seed 1684188494144
 * Starting evolution
+* Search finished after 156s and 117 generations, 43478 statements, best individual has fitness: 503.1816945961316
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 73%
+* Total number of goals: 484
+* Number of covered goals: 351
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 57%
+* Total number of goals: 165
+* Number of covered goals: 94
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 98%
+* Total number of goals: 44
+* Number of covered goals: 43
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 72%
+* Total number of goals: 327
+* Number of covered goals: 236
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 35%
+* Total number of goals: 66
+* Number of covered goals: 23
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 47
+* Number of covered goals: 47
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 94%
+* Total number of goals: 47
+* Number of covered goals: 44
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 57%
+* Total number of goals: 165
+* Number of covered goals: 94
+* Generated 88 tests with total length 314
+* Resulting test suite's coverage: 70% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 14%
+* Compiling and checking tests
+* Permissions denied during test execution: 
+  - java.io.FilePermission: 
+         delete lambda$formula0$d08c20f4$1: 1
+  - java.lang.RuntimePermission: 
+         writeFileDescriptor: 1
+  - java.net.SocketPermission: 
+         connect,resolve 200.42.42.0:3302: 1
+         connect,resolve 192.168.1.42:2391: 1
+         connect,resolve 192.168.1.42:122: 1
+         and other 12 cases of action/name for this exception class
+* Writing JUnit test case 'Simulador_ESTest' to /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/tmp_2023_05_15_23_08_10/tests
+* Done!
+
