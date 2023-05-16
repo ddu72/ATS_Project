@@ -1,6 +1,8 @@
 package test.java;
 import main.java.*;
 
+import main.java.Fatura;
+import main.java.Periodo;
 import org.junit.jupiter.api.*;
 import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,34 +20,42 @@ class FaturaTest {
         fatura = new Fatura("Armando",i,f,100,100);
     }
 
-    /*
     @Test
-    void getPeriodoTest(){
-        LocalDate i = LocalDate.of(2023, 1, 1);
-        LocalDate f = LocalDate.of(2023,1,31);
-        Periodo p = new Periodo(i,f);
-        assertTrue(fatura.getPeriodo()==p, "periodo diferente");
-    }
-    */
-/*
-    @Test
-    void EqualsTest(){
-        LocalDate i = LocalDate.of(2023, 1, 1);
-        LocalDate f = LocalDate.of(2023,1,31);
-        Periodo p = new Periodo(i,f);
-        assertTrue(fatura.equals(p)==true, "periodo diferente");
+    public void testConstrutor(){
+        assertNotNull(fatura);
+        assertEquals("Armando",fatura.getNome(),"nomes da fatura não são iguais");
+        Fatura f = new Fatura(fatura);
+        assertNotNull(f);
+        assertEquals("Armando",f.getNome());
+        assertEquals(100,f.getConsumo());
+        assertEquals(100,f.getCusto());
+        Periodo p = new Periodo(LocalDate.of(2023, 1, 1),LocalDate.of(2023,1,31));
+        assertEquals(p,f.getPeriodo());
     }
 
+    @Test
+    void testClone(){
+        Fatura cloned = fatura.clone();
+
+        assertNotSame(fatura, cloned);
+        assertEquals(fatura.getNome(),cloned.getNome());
+        assertEquals(fatura.getConsumo(),cloned.getConsumo());
+        assertEquals(fatura.getCusto(),cloned.getCusto());
+        assertEquals(fatura.getPeriodo(),cloned.getPeriodo());
+    }
+/*
     @Test
     void toStringTest(){
         String nome = fatura.getNome();
         double consumo = fatura.getConsumo();
         double custo = fatura.getCusto();
         Periodo p = fatura.getPeriodo();
-        assertSame("\nFatura para a casa de "+nome+"\nPeriodo de "+p.getInicio()+" a "+p.getFim()+"\nConusmo: "+consumo+"Kwh, Custo: "+custo+"\n", fatura.toString(),"Strings diferentes");
+        String exp = "\nFatura para a casa de "+nome+"\nPeriodo de "+p.getInicio()+" a "+p.getFim()+"\nConusmo: "+consumo+"Kwh, Custo: "+custo+"\n";
+        String actual = fatura.toString();
+        assertTrue(exp.equals(actual),"Strings diferentes");
     }
-
 */
+
 
 
 }

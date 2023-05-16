@@ -35,9 +35,9 @@ public class Fatura implements Serializable {
         sb.append("\n");
         sb.append(periodo.toString());
         sb.append("\nConsumo: ");
-        sb.append(String.format("%.4f", this.consumo));
+        sb.append(String.format("%.1f", this.consumo));
         sb.append("Kwh, Custo: ");
-        sb.append(String.format("%.4f", this.custo));
+        sb.append(String.format("%.1f", this.custo));
         sb.append("\n");
         return sb.toString();
     }

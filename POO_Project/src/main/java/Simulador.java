@@ -671,4 +671,11 @@ public class Simulador implements Serializable{
     public Simulador clone() {
         return new Simulador(this);
     }
+
+    public void setFaseInicial(boolean b){
+        this.faseInicial=b;
+    }
+    public boolean getFaseInicial(){
+        return this.faseInicial;
+    }
 }
