@@ -244,10 +244,9 @@ def gerar_Casa(draw):
     return Casa(proprietario,nif,fornecedor,divisoes)
 
     
-
 # Escrever 
 def logs(n):
-    with open("logs.txt","w") as text_file:
+    with open("presets_txt/logs.txt","w") as text_file:
         for i in range(n):
             a = gerar_Casa().example()
             text_file.write(str(a))
