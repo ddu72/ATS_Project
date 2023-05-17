@@ -1,0 +1,1169 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report-3.0.xsd" version="3.0" name="smarthouse.Simulador_ESTest" time="1.614" tests="107" errors="0" skipped="0" failures="0">
+  <properties>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="sun.cpu.isalist" value=""/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.class.path" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes:/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes:/home/rogan/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/rogan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/rogan/.m2/repository/org/junit/vintage/junit-vintage-engine/5.9.2/junit-vintage-engine-5.9.2.jar:/home/rogan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/rogan/.m2/repository/org/evosuite/evosuite-standalone-runtime/1.0.6/evosuite-standalone-runtime-1.0.6.jar:"/>
+    <property name="java.vm.vendor" value="Private Build"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="user.timezone" value=""/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="os.name" value="Linux"/>
+    <property name="user.country" value="US"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.boot.library.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/amd64"/>
+    <property name="sun.java.command" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/surefire/surefirebooter3496284584119703590.jar /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/surefire 2023-05-16T22-20-51_853-jvmRun1 surefire5294284620553452396tmp surefire_01285809770260397178tmp"/>
+    <property name="surefire.test.class.path" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes:/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes:/home/rogan/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar:/home/rogan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar:/home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar:/home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar:/home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar:/home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar:/home/rogan/.m2/repository/org/junit/vintage/junit-vintage-engine/5.9.2/junit-vintage-engine-5.9.2.jar:/home/rogan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar:/home/rogan/.m2/repository/org/evosuite/evosuite-standalone-runtime/1.0.6/evosuite-standalone-runtime-1.0.6.jar:"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="user.home" value="/home/rogan"/>
+    <property name="user.language" value="en"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.home" value="/usr/lib/jvm/java-8-openjdk-amd64/jre"/>
+    <property name="basedir" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project"/>
+    <property name="file.separator" value="/"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="surefire.real.class.path" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/surefire/surefirebooter3496284584119703590.jar:/home/rogan/.m2/repository/org/jacoco/org.jacoco.agent/0.8.5/org.jacoco.agent-0.8.5-runtime.jar"/>
+    <property name="sun.boot.class.path" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/resources.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/rt.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/sunrsasign.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jsse.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jce.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/charsets.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/jfr.jar:/usr/lib/jvm/java-8-openjdk-amd64/jre/classes"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="java.runtime.version" value="1.8.0_362-8u362-ga-0ubuntu1~22.04-b09"/>
+    <property name="user.name" value="rogan"/>
+    <property name="path.separator" value=":"/>
+    <property name="os.version" value="5.15.0-41-generic"/>
+    <property name="java.endorsed.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/endorsed"/>
+    <property name="java.runtime.name" value="OpenJDK Runtime Environment"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="java.vm.name" value="OpenJDK 64-Bit Server VM"/>
+    <property name="localRepository" value="/home/rogan/.m2/repository"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="java.version" value="1.8.0_362"/>
+    <property name="user.dir" value="/home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib/x86_64-linux-gnu/jni:/lib/x86_64-linux-gnu:/usr/lib/x86_64-linux-gnu:/usr/lib/jni:/lib:/usr/lib"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.vendor" value="Private Build"/>
+    <property name="java.vm.version" value="25.362-b09"/>
+    <property name="java.specification.maintenance.version" value="4"/>
+    <property name="java.ext.dirs" value="/usr/lib/jvm/java-8-openjdk-amd64/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="java.class.version" value="52.0"/>
+  </properties>
+  <testcase name="test060" classname="smarthouse.Simulador_ESTest" time="0.006">
+    <system-out><![CDATA[O modo do dispositivo que escolher sera trocado
+
+
++--------------------------------------------------+
+| -> Escolhe o id do dispositivo que queres        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta:
+
+
++--------------------------------------------------+
+| -> Id nao existente                              |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test061" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Gerir uma casa                                |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Nao existem casas                             |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test062" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test063" classname="smarthouse.Simulador_ESTest" time="0.013">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test064" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Gerir uma casa                                |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test065" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[null
+
+
++--------------------------------------------------------+
+| -> Escolha uma opcao                                   |
++--------------------------------------------------------+
+|                                                        |
+| 1. Listar dispositivos da casa                         |
+|                                                        |
+| 2. Mudar comercializador da casa                       |
+|                                                        |
+| 3. Ligar/Desligar um dispositivo especifico da casa    |
+|                                                        |
+| 4. Ligar todos os dispositivos de uma divisao          |
+|                                                        |
+| 5. Desligar todos os dispositivos de uma divisao       |
+|                                                        |
+| 6. Sair                                                |
++--------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test066" classname="smarthouse.Simulador_ESTest" time="0.005">
+    <system-out><![CDATA[null
+
+
++--------------------------------------------------+
+| -> Escolha uma opcao                             |
++--------------------------------------------------+
+|                                                  |
+| 1. Mudar comercializador da casa                 |
+|                                                  |
+| 2. Adicionar dispositivo a casa                  |
+|                                                  |
+| 3. Adicionar divisao a casa                      |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test067" classname="smarthouse.Simulador_ESTest" time="0.007">
+    <system-out><![CDATA[null
+
+
++--------------------------------------------------+
+| -> Escolha uma opcao                             |
++--------------------------------------------------+
+|                                                  |
+| 1. Mudar comercializador da casa                 |
+|                                                  |
+| 2. Adicionar dispositivo a casa                  |
+|                                                  |
+| 3. Adicionar divisao a casa                      |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test100" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test057" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Divisao adicionada                            |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test058" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Divisao adicionada                            |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test059" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Casa nao tem divisoes                         |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test070" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Nome de Comercializador nao existente         |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test071" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Criar SmartBulb                               |
+|                                                  |
+| 2. Criar SmartSpeaker                            |
+|                                                  |
+| 3. Criar SmartCamera                             |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++-------------------------------------------------------------+
+| -> Escreve no formato Modo,Largura,Altura,TamanhoFicheiro   |
+| -> Exemplo: ON,1920,1080,50                                 |
++-------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test072" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Criar SmartBulb                               |
+|                                                  |
+| 2. Criar SmartSpeaker                            |
+|                                                  |
+| 3. Criar SmartCamera                             |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Escreve no formato Modo,Volume,Marca,Radio    |
+| -> Exemplo: ON,73,JBL,MEGAHITS				   |
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test073" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Criar SmartBulb                               |
+|                                                  |
+| 2. Criar SmartSpeaker                            |
+|                                                  |
+| 3. Criar SmartCamera                             |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Opcao invalida, saindo                        |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test074" classname="smarthouse.Simulador_ESTest" time="0.01">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Ainda nao existem comercializadores           |
+| -> Crie comercializadores para poder criar casa  |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test075" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[Lampada, id: , OFF, Tone: -350, Tamanho: 0.00
+]]></system-out>
+  </testcase>
+  <testcase name="test076" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test077" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[B2 o8'@ (CustoKwh: 0.0500, Fator Impostos: 1.1000)
+]]></system-out>
+  </testcase>
+  <testcase name="test110" classname="smarthouse.Simulador_ESTest" time="0.006"/>
+  <testcase name="test078" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[+--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Mudar valores de um comercializador           |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test111" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test068" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Nome de Comercializador nao existente         |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test101" classname="smarthouse.Simulador_ESTest" time="0.021"/>
+  <testcase name="test069" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Nao existem casas                             |
++--------------------------------------------------+
+
+]]></system-out>
+  </testcase>
+  <testcase name="test102" classname="smarthouse.Simulador_ESTest" time="0.003"/>
+  <testcase name="test103" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test104" classname="smarthouse.Simulador_ESTest" time="0.068">
+    <system-out><![CDATA[
+
++---------------------------------------------------------------------------------------+
+| -> Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |
++---------------------------------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test105" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test106" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test107" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test108" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test109" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test080" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Criar comercializador                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test081" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[+--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Mudar valores de um comercializador           |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test082" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test083" classname="smarthouse.Simulador_ESTest" time="0.005">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test084" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Criar comercializador                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test085" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Avancar X dias                                |
+|                                                  |
+| 2. Avancar para a data X                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Data atual: 2023-05-16                        |
++--------------------------------------------------+
+| Escreve a nova data no formato AA-MM-DD          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test086" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Avancar X dias                                |
+|                                                  |
+| 2. Avancar para a data X                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Quantos dias queres avancar?                  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test087" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Avancar X dias                                |
+|                                                  |
+| 2. Avancar para a data X                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test000" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test088" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2014-02-14                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------------------+
+| -> Estatisticas:                                             |
++--------------------------------------------------------------+
+| 1. Qual e a casa que mais gastou no ultimo periodo           |
+|                                                              |
+|2. Qual o comercializador com maior volume de faturacao       |
+|                                                              |
+|3. Listar as faturas emitidas por um comercializador          |
+|                                                              |
+|4. Ordenacao dos maior consumidores de energia num periodo    |
++--------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test001" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++---------------------------------------------------------------------------------------+
+| -> Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |
++---------------------------------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test089" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2014-02-14                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| 1. Avancar X dias                                |
+|                                                  |
+| 2. Avancar para a data X                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test079" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Criar comercializador                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test090" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2023-05-16                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
++--------------------------------------------------+
+| -> Data atual: 2023-05-16                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test091" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test092" classname="smarthouse.Simulador_ESTest" time="0.008"/>
+  <testcase name="test093" classname="smarthouse.Simulador_ESTest" time="0.013">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+]]></system-out>
+  </testcase>
+  <testcase name="test094" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
++--------------------------------------------------+
+| -> Ficheiro nao existe                           |
+]]></system-out>
+  </testcase>
+  <testcase name="test095" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
++--------------------------------------------------+
+| -> Ficheiro nao existe                           |
+]]></system-out>
+  </testcase>
+  <testcase name="test096" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test097" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test010" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2014-02-14                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test098" classname="smarthouse.Simulador_ESTest" time="0.003"/>
+  <testcase name="test011" classname="smarthouse.Simulador_ESTest" time="0.008">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2023-05-16                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test099" classname="smarthouse.Simulador_ESTest" time="0.004"/>
+  <testcase name="test012" classname="smarthouse.Simulador_ESTest" time="0.003"/>
+  <testcase name="test004" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test005" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test006" classname="smarthouse.Simulador_ESTest" time="0.008"/>
+  <testcase name="test007" classname="smarthouse.Simulador_ESTest" time="0.036"/>
+  <testcase name="test008" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test009" classname="smarthouse.Simulador_ESTest" time="0.005">
+    <system-out><![CDATA[+--------------------------------------------------+
+| -> Data atual: 2023-05-16                        |
++--------------------------------------------------+
+|                                                  |
+| -> Escolhe uma opcao                             |
+|                                                  |
+| 1. Avancar no tempo                              |
+|                                                  |
+| 2. Gerir entidades                               |
+|                                                  |
+| 3. Estatisticas                                  |
+|                                                  |
+| 4. Gravar estado atual em ficheiro               |
+|                                                  |
+| 5. Acabar Programa                               |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test020" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test021" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[O modo do dispositivo que escolher sera trocado
+
+
++--------------------------------------------------+
+| -> Escolhe o id do dispositivo que queres        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta:
+]]></system-out>
+  </testcase>
+  <testcase name="test022" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[O modo do dispositivo que escolher sera trocado
+
+
++--------------------------------------------------+
+| -> Escolhe o id do dispositivo que queres        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta:
+]]></system-out>
+  </testcase>
+  <testcase name="test013" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test014" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test015" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[null
+
+
++--------------------------------------------------------+
+| -> Escolha uma opcao                                   |
++--------------------------------------------------------+
+|                                                        |
+| 1. Listar dispositivos da casa                         |
+|                                                        |
+| 2. Mudar comercializador da casa                       |
+|                                                        |
+| 3. Ligar/Desligar um dispositivo especifico da casa    |
+|                                                        |
+| 4. Ligar todos os dispositivos de uma divisao          |
+|                                                        |
+| 5. Desligar todos os dispositivos de uma divisao       |
+|                                                        |
+| 6. Sair                                                |
++--------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test016" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test017" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test018" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test019" classname="smarthouse.Simulador_ESTest" time="0.015">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Comercializadores existentes:                 |
++--------------------------------------------------+
+| -> Escreve o nome do comercializador que queres  |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test030" classname="smarthouse.Simulador_ESTest" time="0.014">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test031" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test032" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[null
+
+
++--------------------------------------------------+
+| -> Escolha uma opcao                             |
++--------------------------------------------------+
+|                                                  |
+| 1. Mudar comercializador da casa                 |
+|                                                  |
+| 2. Adicionar dispositivo a casa                  |
+|                                                  |
+| 3. Adicionar divisao a casa                      |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test033" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test034" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test024" classname="smarthouse.Simulador_ESTest" time="0.001">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test025" classname="smarthouse.Simulador_ESTest" time="0.001">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Gerir Comercializadores                       |
+|                                                  |
+| 2. Gerir Casas Inteligentes                      |
+|                                                  |
+| 3. Listar Dispositivos                           |
+|                                                  |
+| 4. Sair                                          |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test026" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Criar comercializador                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test027" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar comercializadores                      |
+|                                                  |
+| 2. Criar comercializador                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test028" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test029" classname="smarthouse.Simulador_ESTest" time="0.004">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Listar casas                                  |
+|                                                  |
+| 2. Criar casas                                   |
+|                                                  |
+| 3. Gerir uma casa                                |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test040" classname="smarthouse.Simulador_ESTest" time="0.009">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Avancar X dias                                |
+|                                                  |
+| 2. Avancar para a data X                         |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test041" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test042" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test043" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| -> Escreva o nome da divisao        |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test044" classname="smarthouse.Simulador_ESTest" time="0.003"/>
+  <testcase name="test045" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test035" classname="smarthouse.Simulador_ESTest" time="0.001">
+    <system-out><![CDATA[
+
++--------------------------------------------------+
+| 1. Criar SmartBulb                               |
+|                                                  |
+| 2. Criar SmartSpeaker                            |
+|                                                  |
+| 3. Criar SmartCamera                             |
++--------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test036" classname="smarthouse.Simulador_ESTest" time="0.008">
+    <system-out><![CDATA[
+
++---------------------------------------------------------------------------------------+
+| -> Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |
++---------------------------------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test037" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[
+
++---------------------------------------------------------------------------------------+
+| -> Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |
++---------------------------------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test038" classname="smarthouse.Simulador_ESTest" time="0.003">
+    <system-out><![CDATA[
+
++---------------------------------------------------------------------------------------+
+| -> Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |
++---------------------------------------------------------------------------------------+
+
+Insere aqui a tua resposta: 
+]]></system-out>
+  </testcase>
+  <testcase name="test039" classname="smarthouse.Simulador_ESTest" time="0.004"/>
+  <testcase name="test050" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test051" classname="smarthouse.Simulador_ESTest" time="0.003"/>
+  <testcase name="test052" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test053" classname="smarthouse.Simulador_ESTest" time="0.002">
+    <system-out><![CDATA[[]
+]]></system-out>
+  </testcase>
+  <testcase name="test054" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test046" classname="smarthouse.Simulador_ESTest" time="0.014"/>
+  <testcase name="test047" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+  <testcase name="test048" classname="smarthouse.Simulador_ESTest" time="0.001"/>
+  <testcase name="test049" classname="smarthouse.Simulador_ESTest" time="0.002"/>
+</testsuite>

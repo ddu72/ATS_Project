@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: smarthouse.Comercializador_ESTest
+-------------------------------------------------------------------------------
+Tests run: 53, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.158 s - in smarthouse.Comercializador_ESTest

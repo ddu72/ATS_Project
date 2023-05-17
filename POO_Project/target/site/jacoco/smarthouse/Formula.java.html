@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Formula.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">Formula.java</span></div><h1>Formula.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.Serializable;
+import java.util.Random;
+
+public interface Formula extends Serializable {
+    int numFormulas = 4;
+    double precoDiario(SmartDevice smartDevice, double custoDiarioKwh, double fatorImpostos);
+
+    static Formula formula0() {
+<span class="fc" id="L11">        return (sD, custo, impostos) -&gt; {</span>
+<span class="fc" id="L12">            return custo * sD.getConsumoDiario() * (1+impostos) * 0.9;</span>
+        };
+    }
+
+    static Formula formula1() {
+<span class="fc" id="L17">        return (sD, custo, impostos) -&gt; {</span>
+<span class="fc" id="L18">            return custo * sD.getConsumoDiario() + (impostos*0.05);</span>
+        };
+    }
+
+    static Formula formula2() {
+<span class="fc" id="L23">        return (sD, custo, impostos) -&gt; {</span>
+<span class="nc" id="L24">            return 1 + custo * sD.getConsumoDiario();</span>
+        };
+    }
+
+    static Formula formula3() {
+<span class="fc" id="L29">        return (sD, custo, impostos) -&gt; {</span>
+<span class="fc" id="L30">            double custoBase = custo * sD.getConsumoDiario();</span>
+<span class="pc bpc" id="L31" title="1 of 2 branches missed.">            return impostos &gt; 5 ? custoBase : custoBase + 0.5;</span>
+        };
+    }
+
+    static Formula getFormula(Random random) {
+<span class="fc" id="L36">        int numFormula = random.nextInt(numFormulas);</span>
+<span class="fc bfc" id="L37" title="All 2 branches covered.">        if (numFormula == 0) return formula0();</span>
+<span class="fc bfc" id="L38" title="All 2 branches covered.">        else if (numFormula == 1) return formula1();</span>
+<span class="fc bfc" id="L39" title="All 2 branches covered.">        else if (numFormula == 2) return formula2();</span>
+<span class="fc" id="L40">        else return formula3();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

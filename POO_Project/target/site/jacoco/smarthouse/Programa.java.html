@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Programa.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">Programa.java</span></div><h1>Programa.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.*;
+import java.util.Scanner;
+
+import static smarthouse.Simulador.construirSimulador;
+
+<span class="fc" id="L8">public class Programa {</span>
+<span class="fc" id="L9">    private static String caminhoFicheirosObjeto = &quot;presets_obj/&quot;;</span>
+<span class="fc" id="L10">    private static String caminhoFicheirosTexto = &quot;presets_txt/&quot;;</span>
+<span class="fc" id="L11">    private static String caminhoEventosAutomaticos = &quot;simular/&quot;;</span>
+
+    public static void main(String[] args) {
+<span class="fc" id="L14">        Scanner scanner = new Scanner(System.in);</span>
+<span class="fc" id="L15">        Simulador simulador = null;</span>
+        // ----- FASE INICIAL -----
+<span class="fc" id="L17">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L18">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L19">        System.out.println(&quot;|                    Bem vindo!                    |&quot;);</span>
+<span class="fc" id="L20">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L21">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L22">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L23">        System.out.println(&quot;| -&gt; Escolha uma opcao:                            |&quot;);</span>
+<span class="fc" id="L24">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L25">        System.out.println(&quot;| 1. Carregar Informacao de ficheiro de objeto     |&quot;);</span>
+<span class="fc" id="L26">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L27">        System.out.println(&quot;| 2. Carregar Informacao de ficheiro de texto      |&quot;);</span>
+<span class="fc" id="L28">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L29">        System.out.println(&quot;| 3. Criar informacao                              |&quot;);</span>
+<span class="fc" id="L30">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L31">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L32">        System.out.println(&quot;Insira aqui a sua resposta: &quot;);</span>
+<span class="fc" id="L33">        String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L34" title="All 2 branches covered.">        if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="fc" id="L35">            System.out.println(&quot;\n+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L36">            System.out.println(&quot;| -&gt; Escolha ficheiro a ser carregado:             |&quot;);</span>
+<span class="fc" id="L37">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+
+<span class="nc" id="L39">            String ficheiro = escolherFicheiro(caminhoFicheirosObjeto, scanner);</span>
+<span class="nc" id="L40">            simulador = construirSimulador(caminhoFicheirosObjeto + ficheiro); //recebe o caminho para um ficheiro onde esta escrito uma entidade da classe Simulador</span>
+<span class="pc bfc" id="L41" title="All 2 branches covered.">        } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="fc" id="L42">            System.out.println(&quot;\n+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L43">            System.out.println(&quot;| -&gt; Escolha ficheiro a ser carregado:             |&quot;);</span>
+<span class="fc" id="L44">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L45">            String ficheiro = escolherFicheiro(caminhoFicheirosTexto, scanner);</span>
+<span class="nc" id="L46">            Parser parser = new Parser(caminhoFicheirosTexto + ficheiro);</span>
+<span class="nc" id="L47">            simulador = parser.parse();</span>
+<span class="pc bfc" id="L48" title="All 2 branches covered.">        } else if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="fc" id="L49">            simulador = new Simulador();</span>
+<span class="nc" id="L50">            simulador.faseInicial(scanner);</span>
+<span class="nc" id="L51">        } else {</span>
+<span class="fc" id="L52">            System.out.println(&quot;\n+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L53">            System.out.println(&quot;| -&gt; Nao escolheu uma opcao valida!                |&quot;);</span>
+<span class="fc" id="L54">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L55">            return;</span>
+        }
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if (simulador == null) {</span>
+<span class="nc" id="L58">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L59">            System.out.println(&quot;|              Terminando o programa!              |&quot;);</span>
+<span class="nc" id="L60">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+
+<span class="nc" id="L62">            return;</span>
+        }
+
+        // ----- FASE DE SIMULACAO -----
+<span class="nc" id="L66">        System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L67">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L68">        System.out.println(&quot;| -&gt; Simular o programa                            |&quot;);</span>
+<span class="nc" id="L69">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L70">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="nc" id="L71">        System.out.println(&quot;| -&gt; Escolha uma opcao:                            |&quot;);</span>
+<span class="nc" id="L72">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="nc" id="L73">        System.out.println(&quot;| 1. Automatizar a simulacao                       |&quot;);</span>
+<span class="nc" id="L74">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="nc" id="L75">        System.out.println(&quot;| 2. Simular manualmente                           |&quot;);</span>
+<span class="nc" id="L76">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="nc" id="L77">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="nc" id="L78">        System.out.println(&quot;Insira aqui a sua resposta: &quot;);</span>
+<span class="nc" id="L79">        escolha = scanner.nextLine();</span>
+<span class="nc" id="L80">        System.out.println(&quot;\n&quot;);</span>
+<span class="nc bnc" id="L81" title="All 2 branches missed.">        if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L82">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L83">            System.out.println(&quot;| -&gt; Escolha o ficheiro com os eventos automaticos |&quot;);</span>
+<span class="nc" id="L84">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L85">            String ficheiro = escolherFicheiro(caminhoEventosAutomaticos, scanner);</span>
+<span class="nc" id="L86">            Parser parser = new Parser(caminhoEventosAutomaticos + ficheiro);</span>
+<span class="nc" id="L87">            parser.simular(simulador);</span>
+<span class="nc bnc" id="L88" title="All 2 branches missed.">        } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L89">            simulador.startInterface(scanner);</span>
+        }
+<span class="nc" id="L91">        simulador.createStatusFile(&quot;output/estado_final.txt&quot;);</span>
+<span class="nc" id="L92">        System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L93">        System.out.println(&quot;+--------------------------------------------------------------------------------------+&quot;);</span>
+<span class="nc" id="L94">        System.out.println(&quot;| -&gt; Foi colocado no ficheiro 'output/estado_final.txt' o estado final da simulacao    |&quot;);</span>
+<span class="nc" id="L95">        System.out.println(&quot;+--------------------------------------------------------------------------------------+\n&quot;);</span>
+<span class="nc" id="L96">    }</span>
+
+    public static void guardarEstadoAtual(Simulador s, Scanner scanner) {
+<span class="fc" id="L99">        System.out.println(&quot;Escreva o nome do ficheiro objeto onde vai ser gravado o estado atual&quot;);</span>
+<span class="fc" id="L100">        String nome = scanner.nextLine();</span>
+<span class="fc" id="L101">        guardarEstadoAtual(s, caminhoFicheirosObjeto + nome);</span>
+<span class="fc" id="L102">    }</span>
+
+    public static void guardarEstadoAtual(Simulador s, String ficheiroObjeto) {
+        try {
+<span class="fc" id="L106">            File ficheiro = new File(ficheiroObjeto);</span>
+
+<span class="fc" id="L108">            FileOutputStream fo = new FileOutputStream(ficheiro);</span>
+<span class="fc" id="L109">            ObjectOutputStream oo = new ObjectOutputStream(fo);</span>
+
+<span class="fc" id="L111">            oo.writeObject(s);</span>
+
+<span class="fc" id="L113">            fo.close();</span>
+<span class="fc" id="L114">            oo.close();</span>
+<span class="fc" id="L115">        } catch (FileNotFoundException e) {</span>
+<span class="fc" id="L116">            System.out.println(&quot;Ficheiro nao encontrado&quot;);</span>
+            //e.printStackTrace();
+<span class="fc" id="L118">        } catch (IOException e) {</span>
+<span class="fc" id="L119">            System.out.println(&quot;Erro a inicializar a stream&quot;);</span>
+            //e.printStackTrace();
+        }
+<span class="fc" id="L122">    }</span>
+
+    public static String escolherFicheiro(String path, Scanner scanner){
+<span class="fc" id="L125">        File diretoria = new File(path);</span>
+<span class="fc" id="L126">        String[] conteudo = diretoria.list();</span>
+<span class="fc" id="L127">        System.out.println(&quot; -&gt; Ficheiros disponiveis:                        &quot;);</span>
+<span class="fc bfc" id="L128" title="All 2 branches covered.">        for (int i=0; i&lt;conteudo.length; i++) {</span>
+<span class="pc bpc" id="L129" title="1 of 2 branches missed.">            if (!conteudo[i].equals(&quot;README.md&quot;)) {</span>
+<span class="fc" id="L130">                System.out.println(&quot;    -&gt; &quot;+conteudo[i]);</span>
+            }
+        }
+<span class="fc" id="L133">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L134">        System.out.println(&quot;Escreve o ficheiro que queres abrir: &quot;);</span>
+<span class="fc" id="L135">        String ret = scanner.nextLine();</span>
+<span class="fc" id="L136">        return ret;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

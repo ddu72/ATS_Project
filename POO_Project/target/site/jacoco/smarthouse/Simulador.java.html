@@ -1,0 +1,682 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Simulador.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">Simulador.java</span></div><h1>Simulador.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.*;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
+
+import static smarthouse.SmartBulb.criarSmartBulb;
+import static smarthouse.SmartCamera.criarSmartCamera;
+import static smarthouse.SmartDevice.escolherDispositivo;
+import static smarthouse.SmartSpeaker.criarSmartSpeaker;
+
+
+public class Simulador implements Serializable{
+    //data da simulacao
+    private LocalDate data;
+    //boleano indicando se o simulador esta na fase de criar entidades
+    private boolean faseInicial;
+    //conjunto de dispositivos
+    private Map&lt;String, SmartDevice&gt; dispositivos;
+    //conjunto de casas inteligentes
+    private Map&lt;Integer, CasaInteligente&gt; casasInteligentes;
+    //conjunto de comercializadores
+    private Map&lt;String, Comercializador&gt; comercializadores;
+    //conjunto de periodos
+    private List&lt;Periodo&gt; periodos;
+    //id atual do atribuidor de ids
+    private int currentId;
+
+<span class="fc" id="L30">    public Simulador() {</span>
+<span class="fc" id="L31">        this.data = LocalDate.now();</span>
+<span class="fc" id="L32">        this.faseInicial = true;</span>
+<span class="fc" id="L33">        this.dispositivos = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L34">        this.casasInteligentes = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L35">        this.comercializadores = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L36">        this.periodos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L37">        this.currentId = 0;</span>
+<span class="fc" id="L38">    }</span>
+
+<span class="fc" id="L40">    public Simulador(boolean faseI) {</span>
+<span class="fc" id="L41">        this.data = LocalDate.now();</span>
+<span class="fc" id="L42">        this.faseInicial = faseI;</span>
+<span class="fc" id="L43">        this.dispositivos = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L44">        this.casasInteligentes = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L45">        this.comercializadores = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L46">        this.periodos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L47">        this.currentId = 0;</span>
+<span class="fc" id="L48">    }</span>
+
+<span class="fc" id="L50">    public Simulador(LocalDate date) {</span>
+<span class="fc" id="L51">        this.faseInicial = true;</span>
+<span class="fc" id="L52">        this.dispositivos = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L53">        this.casasInteligentes = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L54">        this.comercializadores = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L55">        this.periodos = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L56">        this.data = date;</span>
+<span class="fc" id="L57">        this.currentId = 0;</span>
+<span class="fc" id="L58">    }</span>
+
+<span class="fc" id="L60">    public Simulador(Simulador simulador) {</span>
+<span class="fc" id="L61">        this.faseInicial = simulador.faseInicial;</span>
+        /*
+        Os clones ao serem chamado em cada forEach chamam os construtores de cada entidade,
+        que por sua vez adicionam a entidade ao simulador
+        Os dispositivos ja sao adicionados ao simulador dentro dos clones da casa inteligente
+         */
+<span class="fc" id="L67">        this.dispositivos = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L68">        this.casasInteligentes = simulador.casasInteligentes.entrySet().stream()</span>
+<span class="pc" id="L69">                        .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue().clone()));</span>
+<span class="fc" id="L70">        this.comercializadores = simulador.comercializadores.entrySet().stream()</span>
+<span class="pc" id="L71">                        .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue().clone()));</span>
+
+<span class="pc bpc" id="L73" title="1 of 2 branches missed.">        for (CasaInteligente c: this.casasInteligentes.values()) {</span>
+            //adiciona os dispositivos da casa c ao map dispositivos, sem dar clone
+<span class="nc" id="L75">            c.addAllDevices(dispositivos);</span>
+<span class="nc" id="L76">            Comercializador com = c.getComercializador();</span>
+<span class="nc bnc" id="L77" title="All 2 branches missed.">            if (this.comercializadores.containsKey(com.getNome())) {</span>
+<span class="nc" id="L78">                c.setComercializador(this.comercializadores.get(com.getNome()));</span>
+            }
+        }
+
+<span class="fc" id="L82">        this.periodos = simulador.periodos.stream().map(Periodo::clone).collect(Collectors.toList());</span>
+<span class="fc" id="L83">        this.data = simulador.data;</span>
+<span class="fc" id="L84">        this.currentId = simulador.currentId;</span>
+
+<span class="fc" id="L86">    }</span>
+
+    public static Simulador construirSimulador(String caminhoFicheiro) {
+        //Recebe o caminho para um ficheiro com um Simulador ja feito, e constroi-o
+<span class="fc" id="L90">        Simulador simulador = null;</span>
+        try {
+<span class="fc" id="L92">            File ficheiro = new File(caminhoFicheiro);</span>
+<span class="pc bpc" id="L93" title="1 of 2 branches missed.">            if (!ficheiro.exists()) {</span>
+<span class="fc" id="L94">                System.out.println(&quot;\n+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L95">                System.out.println(&quot;| -&gt; Ficheiro nao existe                           |&quot;);</span>
+<span class="fc" id="L96">                return null;</span>
+            }
+<span class="nc" id="L98">            FileInputStream fi = new FileInputStream(ficheiro);</span>
+<span class="nc" id="L99">            ObjectInputStream oi = new ObjectInputStream(fi);</span>
+
+<span class="nc" id="L101">            simulador = (Simulador) oi.readObject();</span>
+<span class="nc" id="L102">            simulador.faseInicial = false;</span>
+
+<span class="nc" id="L104">            fi.close();</span>
+<span class="nc" id="L105">            oi.close();</span>
+<span class="nc" id="L106">        } catch (FileNotFoundException e) {</span>
+<span class="nc" id="L107">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L108">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L109">            System.out.println(&quot;| -&gt; Ficheiro nao encontrado                       |&quot;);</span>
+<span class="nc" id="L110">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L111">            e.printStackTrace();</span>
+<span class="nc" id="L112">        } catch (IOException e) {</span>
+<span class="nc" id="L113">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L114">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L115">            System.out.println(&quot;| -&gt; Erro a inicializar a stream                   |&quot;);</span>
+<span class="nc" id="L116">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L117">            e.printStackTrace();</span>
+<span class="nc" id="L118">        } catch (ClassNotFoundException e) {</span>
+<span class="nc" id="L119">            e.printStackTrace();</span>
+        }
+
+<span class="nc" id="L122">        return simulador; //se devolver null, deu problema em cima</span>
+    }
+
+    public void saltarDias(LocalDate date) {
+<span class="fc" id="L126">        int dias = data.until(date).getDays();</span>
+<span class="fc" id="L127">        saltarDias(dias);</span>
+<span class="fc" id="L128">    }</span>
+
+    public void saltarDias(int daysToSkip) {
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (daysToSkip &gt; 0) {</span>
+<span class="fc" id="L132">            LocalDate antes = data;</span>
+<span class="fc" id="L133">            LocalDate depois = data.plusDays(daysToSkip);</span>
+<span class="fc bfc" id="L134" title="All 2 branches covered.">            for (CasaInteligente casaInteligente: this.casasInteligentes.values()) {</span>
+<span class="nc" id="L135">                casaInteligente.saltarParaData(antes, depois);</span>
+<span class="nc" id="L136">                casaInteligente.change(); //aplicar mudancas pendentes</span>
+            }
+<span class="fc" id="L138">            data = depois;</span>
+<span class="fc bfc" id="L139" title="All 2 branches covered.">            for (SmartDevice sd: this.dispositivos.values()) sd.change(); //aplicar mudancas pendentes</span>
+<span class="fc bfc" id="L140" title="All 2 branches covered.">            for (Comercializador c: this.comercializadores.values()) c.change(); //aplicar mudancas pendentes</span>
+
+<span class="fc" id="L142">            Periodo periodo = new Periodo(antes, data);</span>
+<span class="fc" id="L143">            this.insertPeriodo(periodo);</span>
+        }
+<span class="fc" id="L145">    }</span>
+
+    /*
+    Nesta fase, ser permitido criar dispositivos, casas e fornecedores de energia.
+     */
+    public void faseInicial(Scanner scanner) {
+<span class="fc" id="L151">        this.faseInicial = true;</span>
+<span class="pc bpc" id="L152" title="1 of 2 branches missed.">        while (this.gerirEntidades(scanner));</span>
+<span class="nc" id="L153">        this.faseInicial = false;</span>
+<span class="nc" id="L154">    }</span>
+
+    public void startInterface(Scanner scanner) {
+        while (true) {
+<span class="fc" id="L158">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L159">            System.out.println(&quot;| -&gt; Data atual: &quot; + this.data.toString() +&quot;                        |&quot;);</span>
+<span class="fc" id="L160">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L161">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L162">            System.out.println(&quot;| -&gt; Escolhe uma opcao                             |&quot;);</span>
+<span class="fc" id="L163">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L164">            System.out.println(&quot;| 1. Avancar no tempo                              |&quot;);</span>
+<span class="fc" id="L165">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L166">            System.out.println(&quot;| 2. Gerir entidades                               |&quot;);</span>
+<span class="fc" id="L167">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L168">            System.out.println(&quot;| 3. Estatisticas                                  |&quot;);</span>
+<span class="fc" id="L169">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L170">            System.out.println(&quot;| 4. Gravar estado atual em ficheiro               |&quot;);</span>
+<span class="fc" id="L171">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L172">            System.out.println(&quot;| 5. Acabar Programa                               |&quot;);</span>
+<span class="fc" id="L173">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L174">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L175">            String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L176" title="All 2 branches covered.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L177">                avancarTempo(scanner);</span>
+<span class="pc bpc" id="L178" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L179">                gerirEntidades(scanner);</span>
+<span class="pc bfc" id="L180" title="All 2 branches covered.">            } else if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="fc" id="L181">                Estatisticas estatisticas = new Estatisticas(this.casasInteligentes, this.comercializadores, this.periodos);</span>
+<span class="nc" id="L182">                estatisticas.escolherEstatistica(scanner);</span>
+<span class="pc bpc" id="L183" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;4&quot;)) {</span>
+<span class="nc" id="L184">                Programa.guardarEstadoAtual(this, scanner);</span>
+<span class="pc bpc" id="L185" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;5&quot;)) {</span>
+                //sair do programa
+                break;
+            }
+        }
+<span class="nc" id="L190">    }</span>
+
+    public void avancarTempo(Scanner scanner) {
+<span class="fc" id="L193">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L194">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L195">        System.out.println(&quot;| 1. Avancar X dias                                |&quot;);</span>
+<span class="fc" id="L196">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L197">        System.out.println(&quot;| 2. Avancar para a data X                         |&quot;);</span>
+<span class="fc" id="L198">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L199">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L200">        String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L201" title="All 2 branches covered.">        if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="fc" id="L202">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L203">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L204">            System.out.println(&quot;| -&gt; Quantos dias queres avancar?                  |&quot;);</span>
+<span class="fc" id="L205">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L206">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="nc" id="L207">            int diasAvancados = Integer.parseInt(scanner.nextLine());</span>
+<span class="nc" id="L208">            this.saltarDias(diasAvancados);</span>
+<span class="pc bfc" id="L209" title="All 2 branches covered.">        } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="fc" id="L210">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L211">            System.out.println(&quot;| -&gt; Data atual: &quot; + this.data.toString() +&quot;                        |&quot;);</span>
+<span class="fc" id="L212">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L213">            System.out.println(&quot;| Escreve a nova data no formato AA-MM-DD          |&quot;);</span>
+<span class="fc" id="L214">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L215">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="nc" id="L216">            String dataStr = scanner.nextLine();</span>
+            try {
+<span class="nc" id="L218">                String[] diaMesAno = dataStr.split(&quot;-&quot;, 3);</span>
+<span class="nc" id="L219">                int ano = Integer.valueOf(diaMesAno[0]);</span>
+<span class="nc" id="L220">                int mes = Integer.valueOf(diaMesAno[1]);</span>
+<span class="nc" id="L221">                int dia = Integer.valueOf(diaMesAno[2]);</span>
+<span class="nc" id="L222">                LocalDate dataNova = LocalDate.of(ano,mes,dia);</span>
+<span class="nc bnc" id="L223" title="All 2 branches missed.">                if (dataNova.isBefore(data)) {</span>
+<span class="nc" id="L224">                    System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L225">                    System.out.println(&quot;| -&gt; Inseriu uma data invalida                     |&quot;);</span>
+<span class="nc" id="L226">                    System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="nc" id="L227">                } else {</span>
+<span class="nc" id="L228">                    saltarDias(dataNova);</span>
+                }
+<span class="nc" id="L230">            } catch (Exception e) {</span>
+<span class="nc" id="L231">                System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L232">                System.out.println(&quot;| -&gt; Input invalido                                |&quot;);</span>
+<span class="nc" id="L233">                System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+            }
+        }
+<span class="fc" id="L236">    }</span>
+
+    public boolean gerirEntidades(Scanner scanner) {
+<span class="fc" id="L239">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L240">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L241">        System.out.println(&quot;| 1. Gerir Comercializadores                       |&quot;);</span>
+<span class="fc" id="L242">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L243">        System.out.println(&quot;| 2. Gerir Casas Inteligentes                      |&quot;);</span>
+<span class="fc" id="L244">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L245">        System.out.println(&quot;| 3. Listar Dispositivos                           |&quot;);</span>
+<span class="fc" id="L246">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L247">        System.out.println(&quot;| 4. Sair                                          |&quot;);</span>
+<span class="fc" id="L248">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L249">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L250">        String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L251" title="All 2 branches covered.">        if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="fc" id="L252">            listarDispositivos();</span>
+<span class="fc bfc" id="L253" title="All 2 branches covered.">        } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L254">            gerirCasas(scanner);</span>
+<span class="pc bfc" id="L255" title="All 2 branches covered.">        } else if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L256">            gerirComercializadores(scanner);</span>
+<span class="pc bpc" id="L257" title="1 of 2 branches missed.">        } else if (escolha.equals(&quot;4&quot;)){</span>
+<span class="nc" id="L258">            return false;</span>
+        }
+<span class="fc" id="L260">        return true;</span>
+    }
+
+    public void gerirComercializadores(Scanner scanner) {
+<span class="fc bfc" id="L264" title="All 2 branches covered.">        if (this.faseInicial) {</span>
+<span class="fc" id="L265">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L266">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L267">            System.out.println(&quot;| 1. Listar comercializadores                      |&quot;);</span>
+<span class="fc" id="L268">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L269">            System.out.println(&quot;| 2. Criar comercializador                         |&quot;);</span>
+<span class="fc" id="L270">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L271">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L272">            String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L273" title="All 2 branches covered.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="fc" id="L274">                listarComercializadores();</span>
+<span class="pc bpc" id="L275" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L276">                criarComercializador(scanner);</span>
+            }
+<span class="nc" id="L278">        } else {</span>
+<span class="fc" id="L279">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L280">            System.out.println(&quot;| 1. Listar comercializadores                      |&quot;);</span>
+<span class="fc" id="L281">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L282">            System.out.println(&quot;| 2. Mudar valores de um comercializador           |&quot;);</span>
+<span class="fc" id="L283">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L284">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L285">            String escolha = scanner.nextLine();</span>
+<span class="pc bpc" id="L286" title="1 of 2 branches missed.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L287">                listarComercializadores();</span>
+<span class="pc bpc" id="L288" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L289">                mudarValoresDeComercializador(scanner);</span>
+            }
+        }
+<span class="fc" id="L292">    }</span>
+
+    public void listarComercializadores() {
+<span class="fc bfc" id="L295" title="All 2 branches covered.">        for (Comercializador com: this.comercializadores.values()) {</span>
+<span class="fc" id="L296">            System.out.println(com.toString());</span>
+        }
+<span class="fc" id="L298">    }</span>
+
+    public void listarCasas() {
+<span class="pc bpc" id="L301" title="1 of 2 branches missed.">        for (CasaInteligente casa: this.casasInteligentes.values()) {</span>
+<span class="nc" id="L302">            System.out.println(casa.toString());</span>
+        }
+<span class="fc" id="L304">    }</span>
+
+    public void listarDispositivos() {
+<span class="fc bfc" id="L307" title="All 2 branches covered.">        for (SmartDevice smartDevice: this.dispositivos.values()) {</span>
+<span class="fc" id="L308">            System.out.println(smartDevice.toString());</span>
+        }
+<span class="fc" id="L310">    }</span>
+
+    public void criarComercializador(Scanner scanner) {
+<span class="fc" id="L313">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L314">        System.out.println(&quot;+---------------------------------------------------------------------------------------+&quot;);</span>
+<span class="fc" id="L315">        System.out.println(&quot;| -&gt; Escreve o novo comercializador no formato Nome, CustoDiarioKwh, FatorImpostos      |&quot;);</span>
+<span class="fc" id="L316">        System.out.println(&quot;+---------------------------------------------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L317">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L318">        String input = scanner.nextLine();</span>
+<span class="fc" id="L319">        String[] nomeNif = input.split(&quot;,&quot;, 3);</span>
+<span class="fc" id="L320">        String nome = nomeNif[0];</span>
+<span class="fc" id="L321">        double custoDiarioKwh = Double.valueOf(nomeNif[1]);</span>
+<span class="nc" id="L322">        double fatorImpostos = Double.valueOf(nomeNif[2]);</span>
+<span class="nc" id="L323">        Comercializador comercializador = new Comercializador(nome,custoDiarioKwh,fatorImpostos);</span>
+<span class="nc" id="L324">        this.addComercializador(comercializador);</span>
+<span class="nc" id="L325">    }</span>
+
+    public void criarCasa(Scanner scanner) {
+<span class="pc bpc" id="L328" title="1 of 2 branches missed.">        if (this.comercializadores.isEmpty()) {</span>
+<span class="fc" id="L329">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L330">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L331">            System.out.println(&quot;| -&gt; Ainda nao existem comercializadores           |&quot;);</span>
+<span class="fc" id="L332">            System.out.println(&quot;| -&gt; Crie comercializadores para poder criar casa  |&quot;);</span>
+<span class="fc" id="L333">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L334">            return;</span>
+        }
+<span class="nc" id="L336">        System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L337">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L338">        System.out.println(&quot;| -&gt; Escreve a nova casa no formato Nome, Nif      |&quot;);</span>
+<span class="nc" id="L339">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="nc" id="L340">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="nc" id="L341">        String input = scanner.nextLine();</span>
+<span class="nc" id="L342">        String[] nomeNif = input.split(&quot;,&quot;, 2);</span>
+<span class="nc" id="L343">        String nome = nomeNif[0];</span>
+<span class="nc" id="L344">        int nif = Integer.valueOf(nomeNif[1]);</span>
+        Comercializador comercializador;
+<span class="nc bnc" id="L346" title="All 2 branches missed.">        while ((comercializador = Comercializador.escolherComercializador(this.comercializadores, scanner)) == null) {</span>
+<span class="nc" id="L347">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L348">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L349">            System.out.println(&quot;| -&gt; Escolha um comercializador valido             |&quot;);</span>
+<span class="nc" id="L350">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+        }
+<span class="nc" id="L352">        CasaInteligente casa = new CasaInteligente(nome, nif, comercializador);</span>
+<span class="nc" id="L353">        this.addCasa(casa);</span>
+<span class="nc" id="L354">    }</span>
+
+    public SmartDevice criarDispositivo(Scanner scanner) {
+<span class="fc" id="L357">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L358">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L359">        System.out.println(&quot;| 1. Criar SmartBulb                               |&quot;);</span>
+<span class="fc" id="L360">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L361">        System.out.println(&quot;| 2. Criar SmartSpeaker                            |&quot;);</span>
+<span class="fc" id="L362">        System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L363">        System.out.println(&quot;| 3. Criar SmartCamera                             |&quot;);</span>
+<span class="fc" id="L364">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L365">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L366">        String escolha = scanner.nextLine();</span>
+<span class="fc" id="L367">        SmartDevice smartDevice = null;</span>
+<span class="pc bpc" id="L368" title="1 of 2 branches missed.">        if (escolha.equals(&quot;1&quot;)) smartDevice = criarSmartBulb(scanner);</span>
+<span class="pc bpc" id="L369" title="1 of 2 branches missed.">        if (escolha.equals(&quot;2&quot;)) smartDevice = criarSmartSpeaker(scanner);</span>
+<span class="pc bpc" id="L370" title="1 of 2 branches missed.">        if (escolha.equals(&quot;3&quot;)) smartDevice = criarSmartCamera(scanner);</span>
+<span class="pc bpc" id="L371" title="1 of 2 branches missed.">        if (smartDevice == null) {</span>
+<span class="fc" id="L372">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L373">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L374">            System.out.println(&quot;| -&gt; Opcao invalida, saindo                        |&quot;);</span>
+<span class="fc" id="L375">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+        }
+<span class="fc" id="L377">        return smartDevice;</span>
+    }
+
+    public void mudarValoresDeComercializador(Scanner scanner) {
+<span class="fc" id="L381">        Comercializador comercializador = Comercializador.escolherComercializador(this.comercializadores,scanner);</span>
+<span class="pc bpc" id="L382" title="1 of 2 branches missed.">        if(comercializador != null) comercializador.mudarValores(scanner);</span>
+<span class="fc" id="L383">    }</span>
+
+    public void mudarComercializadorDeCasa(Scanner scanner) {
+<span class="fc" id="L386">        CasaInteligente casa = CasaInteligente.escolherCasa(this.casasInteligentes, scanner);</span>
+<span class="pc bpc" id="L387" title="1 of 2 branches missed.">        if (casa != null) mudarComercializadorDeCasa(casa, scanner);</span>
+<span class="fc" id="L388">    }</span>
+
+    public void mudarComercializadorDeCasa(CasaInteligente casa, Scanner scanner) {
+<span class="fc" id="L391">        Comercializador comercializador = Comercializador.escolherComercializador(this.comercializadores, scanner);</span>
+<span class="pc bpc" id="L392" title="1 of 2 branches missed.">        if (comercializador != null) casa.setComercializador(comercializador);</span>
+<span class="fc" id="L393">    }</span>
+
+    public boolean gerirCasa(CasaInteligente casa, Scanner scanner) {
+<span class="fc" id="L396">        System.out.println(casa);</span>
+<span class="fc bfc" id="L397" title="All 2 branches covered.">        if (this.faseInicial) {</span>
+<span class="fc" id="L398">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L399">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L400">            System.out.println(&quot;| -&gt; Escolha uma opcao                             |&quot;);</span>
+<span class="fc" id="L401">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L402">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L403">            System.out.println(&quot;| 1. Mudar comercializador da casa                 |&quot;);</span>
+<span class="fc" id="L404">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L405">            System.out.println(&quot;| 2. Adicionar dispositivo a casa                  |&quot;);</span>
+<span class="fc" id="L406">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L407">            System.out.println(&quot;| 3. Adicionar divisao a casa                      |&quot;);</span>
+<span class="fc" id="L408">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L409">            System.out.println(&quot;| 4. Sair                                          |&quot;);</span>
+<span class="fc" id="L410">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L411">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L412">            String escolha = scanner.nextLine();</span>
+<span class="pc bpc" id="L413" title="1 of 2 branches missed.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L414">                mudarComercializadorDeCasa(casa, scanner);</span>
+<span class="pc bfc" id="L415" title="All 2 branches covered.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L416">                adicionarDispositivoACasa(casa, scanner);</span>
+<span class="pc bpc" id="L417" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="nc" id="L418">                adicionarDivisaoACasa(casa, scanner);</span>
+<span class="pc bpc" id="L419" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;4&quot;)){</span>
+<span class="nc" id="L420">                return false;</span>
+            }
+<span class="fc" id="L422">            return true;</span>
+        } else {
+<span class="fc" id="L424">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L425">            System.out.println(&quot;+--------------------------------------------------------+&quot;);</span>
+<span class="fc" id="L426">            System.out.println(&quot;| -&gt; Escolha uma opcao                                   |&quot;);</span>
+<span class="fc" id="L427">            System.out.println(&quot;+--------------------------------------------------------+&quot;);</span>
+<span class="fc" id="L428">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L429">            System.out.println(&quot;| 1. Listar dispositivos da casa                         |&quot;);</span>
+<span class="fc" id="L430">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L431">            System.out.println(&quot;| 2. Mudar comercializador da casa                       |&quot;);</span>
+<span class="fc" id="L432">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L433">            System.out.println(&quot;| 3. Ligar/Desligar um dispositivo especifico da casa    |&quot;);</span>
+<span class="fc" id="L434">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L435">            System.out.println(&quot;| 4. Ligar todos os dispositivos de uma divisao          |&quot;);</span>
+<span class="fc" id="L436">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L437">            System.out.println(&quot;| 5. Desligar todos os dispositivos de uma divisao       |&quot;);</span>
+<span class="fc" id="L438">            System.out.println(&quot;|                                                        |&quot;);</span>
+<span class="fc" id="L439">            System.out.println(&quot;| 6. Sair                                                |&quot;);</span>
+<span class="fc" id="L440">            System.out.println(&quot;+--------------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L441">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L442">            String escolha = scanner.nextLine();</span>
+<span class="pc bpc" id="L443" title="1 of 2 branches missed.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L444">                casa.listarDispositivos();</span>
+<span class="pc bfc" id="L445" title="All 2 branches covered.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L446">                mudarComercializadorDeCasa(casa, scanner);</span>
+<span class="pc bpc" id="L447" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="nc" id="L448">                ligarDesligarDispositivoDeCasa(casa,scanner);</span>
+<span class="pc bpc" id="L449" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;4&quot;)) {</span>
+<span class="nc" id="L450">                String divisao = casa.escolherDivisao(scanner);</span>
+<span class="nc" id="L451">                casa.setAllOn(divisao, true);</span>
+<span class="pc bpc" id="L452" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;5&quot;)) {</span>
+<span class="nc" id="L453">                String divisao = casa.escolherDivisao(scanner);</span>
+<span class="nc" id="L454">                casa.setAllOn(divisao, false);</span>
+<span class="pc bpc" id="L455" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;6&quot;)){</span>
+<span class="nc" id="L456">                return false;</span>
+            }
+<span class="fc" id="L458">            return true;</span>
+        }
+
+    }
+
+
+    public void gerirCasas(Scanner scanner) {
+<span class="fc bfc" id="L465" title="All 2 branches covered.">        if (this.faseInicial) {</span>
+<span class="fc" id="L466">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L467">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L468">            System.out.println(&quot;| 1. Listar casas                                  |&quot;);</span>
+<span class="fc" id="L469">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L470">            System.out.println(&quot;| 2. Criar casas                                   |&quot;);</span>
+<span class="fc" id="L471">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L472">            System.out.println(&quot;| 3. Gerir uma casa                                |&quot;);</span>
+<span class="fc" id="L473">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L474">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L475">            String escolha = scanner.nextLine();</span>
+<span class="fc bfc" id="L476" title="All 2 branches covered.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="fc" id="L477">                listarCasas();</span>
+<span class="pc bpc" id="L478" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="nc" id="L479">                criarCasa(scanner);</span>
+<span class="pc bpc" id="L480" title="1 of 2 branches missed.">            } else if (escolha.equals(&quot;3&quot;)) {</span>
+<span class="nc" id="L481">                CasaInteligente casa = CasaInteligente.escolherCasa(this.casasInteligentes, scanner);</span>
+<span class="nc bnc" id="L482" title="All 4 branches missed.">                if (casa != null) while(gerirCasa(casa, scanner));</span>
+            }
+<span class="nc" id="L484">        } else {</span>
+<span class="fc" id="L485">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L486">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L487">            System.out.println(&quot;| 1. Listar casas                                  |&quot;);</span>
+<span class="fc" id="L488">            System.out.println(&quot;|                                                  |&quot;);</span>
+<span class="fc" id="L489">            System.out.println(&quot;| 2. Gerir uma casa                                |&quot;);</span>
+<span class="fc" id="L490">            System.out.println(&quot;| 3. Gerir uma casa                                |&quot;);</span>
+<span class="fc" id="L491">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L492">            System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L493">            String escolha = scanner.nextLine();</span>
+<span class="pc bpc" id="L494" title="1 of 2 branches missed.">            if (escolha.equals(&quot;1&quot;)) {</span>
+<span class="nc" id="L495">                listarCasas();</span>
+<span class="pc bfc" id="L496" title="All 2 branches covered.">            } else if (escolha.equals(&quot;2&quot;)) {</span>
+<span class="fc" id="L497">                CasaInteligente casa = CasaInteligente.escolherCasa(this.casasInteligentes, scanner);</span>
+<span class="pc bpc" id="L498" title="3 of 4 branches missed.">                if (casa != null) while(gerirCasa(casa, scanner));</span>
+            }
+        }
+
+<span class="fc" id="L502">    }</span>
+
+    public void ligarDesligarDispositivoDeCasa(CasaInteligente casa, Scanner scanner) {
+<span class="fc" id="L505">        Map&lt;String, SmartDevice&gt; dispositivosDaCasa = this.dispositivos.entrySet().stream()</span>
+<span class="pc" id="L506">                .filter(e -&gt; casa.existsDevice(e.getValue().getID()))</span>
+<span class="pc" id="L507">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue()));</span>
+
+<span class="fc" id="L509">        System.out.println(&quot;O modo do dispositivo que escolher sera trocado&quot;);</span>
+<span class="fc" id="L510">        SmartDevice dispositivo = escolherDispositivo(dispositivosDaCasa, scanner);</span>
+<span class="pc bpc" id="L511" title="3 of 4 branches missed.">        if (dispositivo != null) dispositivo.setOn(!dispositivo.isOn());</span>
+<span class="fc" id="L512">    }</span>
+
+    public void adicionarDispositivoACasa(CasaInteligente casa, Scanner scanner) {
+<span class="pc bpc" id="L515" title="1 of 2 branches missed.">        if (!casa.existsRooms()) {</span>
+<span class="fc" id="L516">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L517">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L518">            System.out.println(&quot;| -&gt; Casa nao tem divisoes                         |&quot;);</span>
+<span class="fc" id="L519">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L520">            return;</span>
+        }
+<span class="nc" id="L522">        String divisao = casa.escolherDivisao(scanner);</span>
+<span class="nc" id="L523">        SmartDevice disp = criarDispositivo(scanner);</span>
+<span class="nc" id="L524">        this.addDispositivo(disp);</span>
+<span class="nc" id="L525">        casa.addDevice(disp); //adiciona dispositivo a casa</span>
+<span class="nc" id="L526">        casa.addToRoom(divisao, disp.getID()); //adiciona dispositivo a divisao</span>
+<span class="nc" id="L527">    }</span>
+
+    public void adicionarDivisaoACasa(CasaInteligente casa, Scanner scanner) {
+<span class="fc" id="L530">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L531">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L532">        System.out.println(&quot;| -&gt; Escreva o nome da divisao        |&quot;);</span>
+<span class="fc" id="L533">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L534">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L535">        String div = scanner.nextLine();</span>
+<span class="fc" id="L536">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L537">        System.out.println(&quot;| -&gt; Divisao adicionada                            |&quot;);</span>
+<span class="fc" id="L538">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc bfc" id="L539" title="All 2 branches covered.">        if (casa != null) casa.addRoom(div);</span>
+<span class="fc" id="L540">    }</span>
+
+    /*
+    Recebe uma string que representa o path para o ficheiro que vai conter o estado atual
+    do simulador
+     */
+    public void createStatusFile(String filePath) {
+        try {
+<span class="nc" id="L548">            FileWriter myWriter = new FileWriter(filePath);</span>
+
+<span class="nc" id="L550">            myWriter.write(&quot;Fornecedores: \n&quot;);</span>
+<span class="nc bnc" id="L551" title="All 2 branches missed.">            for (Comercializador c: this.comercializadores.values()) {</span>
+<span class="nc" id="L552">                myWriter.write(c.toString());</span>
+<span class="nc" id="L553">                myWriter.write(&quot;\n&quot;);</span>
+            }
+
+<span class="nc" id="L556">            myWriter.write(&quot;\n&quot;);</span>
+<span class="nc" id="L557">            myWriter.write(&quot;Casas Inteligentes: \n&quot;);</span>
+<span class="nc bnc" id="L558" title="All 2 branches missed.">            for (CasaInteligente c: this.casasInteligentes.values()) {</span>
+<span class="nc" id="L559">                myWriter.write(c.toString());</span>
+<span class="nc" id="L560">                myWriter.write(&quot;\n&quot;);</span>
+<span class="nc" id="L561">                myWriter.write(c.conteudo());</span>
+<span class="nc" id="L562">                myWriter.write(&quot;\n&quot;);</span>
+            }
+<span class="nc" id="L564">            myWriter.close();</span>
+<span class="nc" id="L565">        } catch (IOException e) {</span>
+<span class="nc" id="L566">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L567">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L568">            System.out.println(&quot;| -&gt; Nao conseguiu abrir/escrever ficheiro         |&quot;);</span>
+<span class="nc" id="L569">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+        }
+<span class="nc" id="L571">    }</span>
+
+    public CasaInteligente getCasa(String nome) {
+        try {
+<span class="fc" id="L575">            int nif = Integer.valueOf(nome);</span>
+<span class="fc" id="L576">            return this.casasInteligentes.get(nif);</span>
+<span class="fc" id="L577">        } catch (NumberFormatException e) {</span>
+<span class="fc" id="L578">            return null;</span>
+        }
+    }
+
+    public String getNextId() {
+<span class="fc" id="L583">        this.currentId++;</span>
+<span class="fc" id="L584">        return String.valueOf(this.currentId);</span>
+    }
+
+    public Comercializador getComercializador(String nome) {
+<span class="fc" id="L588">        return this.comercializadores.get(nome);</span>
+    }
+
+    public SmartDevice getDispositivo(String id) {
+<span class="fc" id="L592">        return this.dispositivos.get(id);</span>
+    }
+
+    public void addDispositivo(SmartDevice smartDevice) {
+<span class="fc" id="L596">        smartDevice.setID(this.getNextId()); //atribui id ao smartdevice</span>
+<span class="fc" id="L597">        this.dispositivos.put(smartDevice.getID(), smartDevice);</span>
+<span class="fc" id="L598">    }</span>
+
+    public void addCasa(CasaInteligente casaInteligente) {
+<span class="fc" id="L601">        this.casasInteligentes.put(casaInteligente.getNif(), casaInteligente);</span>
+<span class="fc" id="L602">    }</span>
+
+    public void addComercializador(Comercializador c) {
+<span class="fc" id="L605">        this.comercializadores.put(c.getNome(), c);</span>
+<span class="fc" id="L606">    }</span>
+
+    private void insertPeriodo(Periodo periodo) {
+<span class="fc bfc" id="L609" title="All 2 branches covered.">        if (!this.periodos.contains(periodo)) {</span>
+<span class="fc" id="L610">            this.periodos.add(periodo);</span>
+        }
+<span class="fc" id="L612">    }</span>
+
+    public void addPeriodo(Periodo periodo) {
+<span class="fc" id="L615">        insertPeriodo(periodo.clone());</span>
+<span class="fc" id="L616">    }</span>
+
+    public void printFaturas() {
+<span class="fc bfc" id="L619" title="All 2 branches covered.">        for (CasaInteligente casaInteligente: this.casasInteligentes.values()) {</span>
+<span class="fc" id="L620">            System.out.println(casaInteligente.getFaturas());</span>
+        }
+<span class="fc" id="L622">    }</span>
+
+    /*
+    Esta funcao elimina as faturas existentes no simulador inteiro, tambem elimina as instancias de periodo
+     */
+    public void reset() {
+<span class="fc" id="L628">        this.data = LocalDate.now();</span>
+<span class="pc bpc" id="L629" title="1 of 2 branches missed.">        for (CasaInteligente casa: this.casasInteligentes.values()) {</span>
+<span class="nc" id="L630">            casa.setFaturas(new ArrayList&lt;&gt;()); //elimina as faturas da casa</span>
+        }
+<span class="fc bfc" id="L632" title="All 2 branches covered.">        for (Comercializador c: this.comercializadores.values()) {</span>
+<span class="fc" id="L633">            c.setFaturas(new ArrayList&lt;&gt;()); //elimina as faturas do fornecedor</span>
+        }
+<span class="fc" id="L635">        this.periodos = new ArrayList&lt;&gt;();</span>
+
+
+<span class="fc" id="L638">    }</span>
+
+    public LocalDate getData() {
+<span class="fc" id="L641">        return this.data;</span>
+    }
+
+    public Map&lt;String, SmartDevice&gt; getDispositivos() {
+<span class="fc" id="L645">        return dispositivos;</span>
+    }
+
+    public Map&lt;Integer, CasaInteligente&gt; getCasasInteligentes() {
+<span class="fc" id="L649">        return casasInteligentes;</span>
+    }
+
+    public Map&lt;String, Comercializador&gt; getComercializadores() {
+<span class="fc" id="L653">        return comercializadores;</span>
+    }
+
+    public void setDispositivos(Map&lt;String, SmartDevice&gt; disp) {
+<span class="fc" id="L657">        this.dispositivos = disp.entrySet().stream()</span>
+<span class="fc" id="L658">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue()));</span>
+<span class="fc" id="L659">    }</span>
+
+    public void setCasasInteligentes(Map&lt;Integer, CasaInteligente&gt; casas) {
+<span class="fc" id="L662">        this.casasInteligentes = casas.entrySet().stream()</span>
+<span class="pc" id="L663">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue()));</span>
+<span class="fc" id="L664">    }</span>
+
+    public void setComercializadores(Map&lt;String, Comercializador&gt; comercializadores) {
+<span class="fc" id="L667">        this.comercializadores = comercializadores.entrySet().stream()</span>
+<span class="fc" id="L668">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue()));</span>
+<span class="fc" id="L669">    }</span>
+
+    public Simulador clone() {
+<span class="fc" id="L672">        return new Simulador(this);</span>
+    }
+
+    public void setFaseInicial(boolean b){
+<span class="fc" id="L676">        this.faseInicial=b;</span>
+<span class="fc" id="L677">    }</span>
+    public boolean getFaseInicial(){
+<span class="fc" id="L679">        return this.faseInicial;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

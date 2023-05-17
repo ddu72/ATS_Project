@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SmartDevice.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">SmartDevice.java</span></div><h1>SmartDevice.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
+import java.util.List;
+import java.util.Map;
+import java.util.Scanner;
+import java.util.function.Consumer;
+
+public abstract class SmartDevice implements Serializable, PendingChanges{
+    private String id;
+    private double custoInstalacao;
+    private double consumoDiario;
+    private Modo modo;
+    private Modo modoToChange;
+
+<span class="fc" id="L18">    public enum Modo{</span>
+<span class="fc" id="L19">        ON, OFF;</span>
+    }
+
+<span class="fc" id="L22">    public SmartDevice() {</span>
+<span class="fc" id="L23">        this.id = &quot;N/A&quot;;</span>
+<span class="fc" id="L24">        this.modo = Modo.OFF;</span>
+<span class="fc" id="L25">        this.modoToChange = null;</span>
+<span class="fc" id="L26">        this.custoInstalacao = 0;</span>
+<span class="fc" id="L27">        this.consumoDiario = -1;</span>
+
+<span class="fc" id="L29">    }</span>
+
+<span class="fc" id="L31">    public SmartDevice(double custoInstalacao) {</span>
+<span class="fc" id="L32">        this.id = &quot;&quot;; //ainda nao foi definido o id</span>
+<span class="fc" id="L33">        this.custoInstalacao = custoInstalacao;</span>
+<span class="fc" id="L34">        this.consumoDiario = -1;</span>
+<span class="fc" id="L35">        this.modo = Modo.OFF;</span>
+<span class="fc" id="L36">        this.modoToChange = null;</span>
+<span class="fc" id="L37">    }</span>
+
+<span class="fc" id="L39">    public SmartDevice(double custoInstalacao, Modo modo) {</span>
+<span class="fc" id="L40">        this.id = &quot;&quot;;</span>
+<span class="fc" id="L41">        this.custoInstalacao = custoInstalacao;</span>
+<span class="fc" id="L42">        this.consumoDiario = -1;</span>
+<span class="fc" id="L43">        this.modo = modo;</span>
+<span class="fc" id="L44">        this.modoToChange = null;</span>
+<span class="fc" id="L45">    }</span>
+
+<span class="fc" id="L47">    public SmartDevice(SmartDevice smartDevice) {</span>
+<span class="fc" id="L48">        this.id = smartDevice.getID();</span>
+<span class="fc" id="L49">        this.custoInstalacao = smartDevice.custoInstalacao;</span>
+<span class="fc" id="L50">        this.consumoDiario = smartDevice.consumoDiario;</span>
+<span class="fc" id="L51">        this.modo = smartDevice.modo;</span>
+<span class="fc" id="L52">        this.modoToChange = smartDevice.modoToChange;</span>
+<span class="fc" id="L53">    }</span>
+
+    public double consumoAte(LocalDate inicio, LocalDate fim) {
+<span class="fc bfc" id="L56" title="All 2 branches covered.">        if (modo == Modo.ON) {</span>
+<span class="fc" id="L57">            int diasPassados = inicio.until(fim).getDays();</span>
+<span class="fc" id="L58">            return diasPassados * this.consumoDiario;</span>
+<span class="fc" id="L59">        } else return 0;</span>
+    }
+
+    public double custoAte(Comercializador comercializador, LocalDate inicio, LocalDate fim) {
+<span class="fc bfc" id="L63" title="All 2 branches covered.">        if (this.modo == Modo.ON) {</span>
+<span class="fc" id="L64">            int diasPassados = inicio.until(fim).getDays();</span>
+<span class="fc" id="L65">            return comercializador.precoDiaPorDispositivo(this) * diasPassados;</span>
+<span class="fc" id="L66">        } else return 0;</span>
+    }
+
+    public void turnOn() {
+<span class="fc" id="L70">        this.modoToChange = Modo.ON; //coloca a mudanca de maneira a ser executada no fim do periodo de simulacao</span>
+<span class="fc" id="L71">    }</span>
+
+    public void turnOff() {
+<span class="fc" id="L74">        this.modoToChange = Modo.OFF; //coloca a mudanca de maneira a ser executada no fim do periodo de simulacao</span>
+<span class="fc" id="L75">    }</span>
+
+    public void setOn(boolean b) {
+<span class="fc bfc" id="L78" title="All 2 branches covered.">        if (b) turnOn();</span>
+<span class="fc" id="L79">        else turnOff();</span>
+<span class="fc" id="L80">    }</span>
+
+    public String getID() {
+<span class="fc" id="L83">        return id;</span>
+    }
+
+    public void setID(String ID) {
+<span class="fc" id="L87">        this.id = ID;</span>
+<span class="fc" id="L88">    }</span>
+
+    public double getCustoInstalacao() {
+<span class="fc" id="L91">        return custoInstalacao;</span>
+    }
+
+    public abstract void calcularConsumoDiario();
+
+    public void setCustoInstalacao(double custoInstalacao) {
+<span class="fc" id="L97">        this.custoInstalacao = custoInstalacao;</span>
+<span class="fc" id="L98">    }</span>
+
+    public Modo getModo() {
+<span class="fc" id="L101">        return modo;</span>
+    }
+
+    public boolean isOn() {
+<span class="fc bfc" id="L105" title="All 2 branches covered.">        return this.modo == Modo.ON;</span>
+    }
+
+    public void setConsumoDiario(double consumo) {
+<span class="fc" id="L109">        this.consumoDiario = consumo;</span>
+<span class="fc" id="L110">    }</span>
+
+    public double getConsumoDiario() {
+<span class="fc" id="L113">        return this.consumoDiario;</span>
+    }
+
+    public String toString() {
+<span class="nc" id="L117">        StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L118">        sb.append(this.getClass().toString());</span>
+<span class="nc" id="L119">        sb.append(&quot;, &quot;);</span>
+<span class="nc" id="L120">        sb.append(this.id);</span>
+<span class="nc" id="L121">        sb.append(&quot;, &quot;);</span>
+<span class="nc" id="L122">        sb.append(this.modo);</span>
+<span class="nc" id="L123">        return sb.toString();</span>
+    }
+
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L127" title="All 2 branches covered.">        if (this == o) return true;</span>
+<span class="fc bfc" id="L128" title="All 4 branches covered.">        if (o == null || this.getClass() != o.getClass()) return false;</span>
+
+<span class="fc" id="L130">        SmartDevice smartDevice = (SmartDevice) o;</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        return this.id == smartDevice.getID() &amp;&amp;</span>
+<span class="fc bfc" id="L132" title="All 2 branches covered.">                this.custoInstalacao == smartDevice.getCustoInstalacao() &amp;&amp;</span>
+<span class="fc bfc" id="L133" title="All 2 branches covered.">                this.modo.equals(smartDevice.getModo());</span>
+    }
+
+    public static SmartDevice escolherDispositivo(Map&lt;String, SmartDevice&gt; disp, Scanner scanner) {
+<span class="fc bfc" id="L137" title="All 2 branches covered.">        for (SmartDevice sD: disp.values()) {</span>
+<span class="fc" id="L138">            System.out.println(sD);</span>
+        }
+<span class="fc" id="L140">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L141">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L142">        System.out.println(&quot;| -&gt; Escolhe o id do dispositivo que queres        |&quot;);</span>
+<span class="fc" id="L143">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L144">        System.out.println(&quot;Insere aqui a tua resposta:&quot;);</span>
+<span class="fc" id="L145">        String id = scanner.nextLine(); //assume-se que escolheu uma opcao valida</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (disp.containsKey(id)) {</span>
+<span class="fc" id="L147">            return disp.get(id);</span>
+        } else {
+<span class="fc" id="L149">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L150">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L151">            System.out.println(&quot;| -&gt; Id nao existente                              |&quot;);</span>
+<span class="fc" id="L152">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+
+<span class="fc" id="L154">            return null;</span>
+        }
+    }
+
+    public abstract SmartDevice clone();
+
+    @Override
+    public void change() {
+<span class="fc bfc" id="L162" title="All 2 branches covered.">        if (this.modoToChange != null) {</span>
+<span class="fc" id="L163">            this.modo = this.modoToChange;</span>
+<span class="fc" id="L164">            this.modoToChange = null;</span>
+        }
+<span class="fc" id="L166">    }</span>
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

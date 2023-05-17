@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SmartBulb.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">SmartBulb.java</span></div><h1>SmartBulb.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class SmartBulb extends SmartDevice {
+    public static final int WARM = 2;
+    public static final int NEUTRAL = 1;
+    public static final int COLD = 0;
+
+    private int tone;
+    private double tamanho;
+
+    /**
+     * Constructor for objects of class SmartBulb
+     */
+    public SmartBulb() {
+<span class="fc" id="L18">        super();</span>
+<span class="fc" id="L19">        this.tone = NEUTRAL;</span>
+<span class="fc" id="L20">        calcularConsumoDiario();</span>
+<span class="fc" id="L21">    }</span>
+
+
+    public SmartBulb(int tone) {
+<span class="fc" id="L25">        super(150);</span>
+<span class="fc" id="L26">        this.tone = tone;</span>
+<span class="fc" id="L27">        calcularConsumoDiario();</span>
+<span class="fc" id="L28">    }</span>
+
+    public SmartBulb(Modo modo, int tone, double tamanho) {
+<span class="fc" id="L31">        super(150, modo);</span>
+<span class="fc" id="L32">        this.tone = tone;</span>
+<span class="fc" id="L33">        this.tamanho = tamanho;</span>
+<span class="fc" id="L34">        calcularConsumoDiario();</span>
+<span class="fc" id="L35">    }</span>
+
+    public SmartBulb(Modo modo, int tone, double tamanho, double consumoDiario) {
+<span class="fc" id="L38">        super(150, modo);</span>
+<span class="fc" id="L39">        this.tone = tone;</span>
+<span class="fc" id="L40">        this.tamanho = tamanho;</span>
+<span class="fc" id="L41">        setConsumoDiario(consumoDiario);</span>
+<span class="fc" id="L42">    }</span>
+
+    public SmartBulb(SmartBulb s) {
+<span class="fc" id="L45">        super(s);</span>
+<span class="fc" id="L46">        this.tone = s.tone;</span>
+<span class="fc" id="L47">        this.tamanho = s.tamanho;</span>
+<span class="fc" id="L48">    }</span>
+
+
+
+    public void setTone(int t) {
+<span class="fc bfc" id="L53" title="All 2 branches covered.">        if (t&gt;WARM) this.tone = WARM;</span>
+<span class="fc bfc" id="L54" title="All 2 branches covered.">        else if (t&lt;COLD) this.tone = COLD;</span>
+<span class="fc" id="L55">        else this.tone = t;</span>
+<span class="fc" id="L56">    }</span>
+
+    public int getTone() {
+<span class="fc" id="L59">        return this.tone;</span>
+    }
+
+    public double getTamanho() {
+<span class="fc" id="L63">        return tamanho;</span>
+    }
+
+    public void setTamanho(double tamanho) {
+<span class="fc" id="L67">        this.tamanho = tamanho;</span>
+<span class="fc" id="L68">    }</span>
+
+    public static SmartBulb criarSmartBulb(Scanner scanner) {
+<span class="fc" id="L71">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L72">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L73">        System.out.println(&quot;| -&gt; Escreve no formato Modo,Tone,Tamanho          |&quot;);</span>
+<span class="fc" id="L74">        System.out.println(&quot;| -&gt; Exemplo: OFF,WARM,6.3                         |&quot;);</span>
+<span class="fc" id="L75">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L76">        System.out.println(&quot;Insere aqui a tua reposta: &quot;);</span>
+<span class="fc" id="L77">        String input = scanner.nextLine();</span>
+<span class="fc" id="L78">        String[] idCustoModoTone = input.split(&quot;,&quot;, 3);</span>
+<span class="pc bpc" id="L79" title="1 of 4 branches missed.">        Modo modo = idCustoModoTone[0].equals(&quot;OFF&quot;) ? Modo.OFF : idCustoModoTone[0].equals(&quot;ON&quot;) ? Modo.ON : null;</span>
+<span class="pc bpc" id="L80" title="3 of 6 branches missed.">        int tone = idCustoModoTone[1].equals(&quot;WARM&quot;) ? 2 : idCustoModoTone[1].equals(&quot;NEUTRAL&quot;) ? 1 : idCustoModoTone[1].equals(&quot;COLD&quot;) ? 0 : -1;</span>
+<span class="nc" id="L81">        double tamanho = Double.valueOf(idCustoModoTone[2]);</span>
+<span class="nc" id="L82">        SmartBulb ret = new SmartBulb(modo, tone, tamanho);</span>
+<span class="nc" id="L83">        return ret;</span>
+    }
+
+    public String toString(){
+<span class="fc" id="L87">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L88">        sb.append(&quot;Lampada, id: &quot;);</span>
+<span class="fc" id="L89">        sb.append(this.getID());</span>
+<span class="fc" id="L90">        sb.append(&quot;, &quot;);</span>
+<span class="fc" id="L91">        sb.append(this.getModo());</span>
+<span class="fc" id="L92">        sb.append(&quot;, Tone: &quot;);</span>
+<span class="fc" id="L93">        sb.append(this.getTone());</span>
+<span class="fc" id="L94">        sb.append(&quot;, Tamanho: &quot;);</span>
+<span class="fc" id="L95">        sb.append(String.format(&quot;%.2f&quot;, this.getTamanho()));</span>
+<span class="fc" id="L96">        return sb.toString();</span>
+    }
+
+    @Override
+    public SmartBulb clone() {
+<span class="fc" id="L101">        return new SmartBulb(this);</span>
+    }
+
+
+    @Override
+    public void calcularConsumoDiario() {
+<span class="fc" id="L107">        double consumo = 0.5 + (this.tone * 2.5); //valor varia entre 0.5 e 5.5</span>
+<span class="fc" id="L108">        setConsumoDiario(consumo);</span>
+<span class="fc" id="L109">    }</span>
+
+    public static SmartBulb parse(String linha, Random random) {
+<span class="fc" id="L112">        String[] linhaPartida = linha.split(&quot;,&quot;, 3); //no maximo 3 parametros</span>
+<span class="fc" id="L113">        String toneStr = linhaPartida[0];</span>
+        int tone;
+<span class="fc bfc" id="L115" title="All 2 branches covered.">        if (toneStr.equals(&quot;Neutral&quot;)) tone = 1;</span>
+<span class="fc bfc" id="L116" title="All 2 branches covered.">        else if (toneStr.equals(&quot;Warm&quot;)) tone = 2;</span>
+<span class="fc bfc" id="L117" title="All 2 branches covered.">        else if (toneStr.equals(&quot;Cold&quot;)) tone = 0;</span>
+        else {
+<span class="fc" id="L119">            System.out.println(&quot;Input invalido&quot;);</span>
+<span class="fc" id="L120">            return null;</span>
+        }
+
+<span class="nc" id="L123">        double tamanho = Double.valueOf(linhaPartida[1]);</span>
+<span class="nc" id="L124">        double consumo = Double.valueOf(linhaPartida[2]);</span>
+<span class="nc bnc" id="L125" title="All 2 branches missed.">        Modo modo = random.nextBoolean() ? Modo.ON : Modo.OFF;</span>
+
+<span class="nc" id="L127">        SmartBulb sB = new SmartBulb(modo, tone, tamanho, consumo);</span>
+<span class="nc" id="L128">        return sB;</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

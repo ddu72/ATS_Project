@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Parser.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">Parser.java</span></div><h1>Parser.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.util.*;
+
+public class Parser {
+    private String filePath;
+
+<span class="fc" id="L13">    public Parser(String path) {</span>
+<span class="fc" id="L14">        this.filePath = path;</span>
+<span class="fc" id="L15">    }</span>
+
+    public Simulador parse(){
+        List&lt;String&gt; linhasFicheiro;
+        try {
+<span class="nc" id="L20">            linhasFicheiro = lerFicheiro(this.filePath);</span>
+<span class="pc" id="L21">        } catch (IOException e) {</span>
+<span class="fc" id="L22">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L23">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L24">            System.out.println(&quot;| -&gt; Ficheiro nao encontrado                       |&quot;);</span>
+<span class="fc" id="L25">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+
+<span class="fc" id="L27">            return null;</span>
+        }
+
+<span class="nc" id="L30">        Simulador simulador = new Simulador(false); //cria um simulador vazio</span>
+
+        String[] linhaPartida;
+<span class="nc" id="L33">        CasaInteligente ultimaCasa = null;</span>
+<span class="nc" id="L34">        SmartDevice ultimoDispositivo = null;</span>
+<span class="nc" id="L35">        String ultimaDivisao = null;</span>
+
+<span class="nc" id="L37">        Random rand = new Random(); //randomizador para gerar dados aleatorios</span>
+
+        try {
+<span class="nc bnc" id="L40" title="All 2 branches missed.">            for (String linha: linhasFicheiro) {</span>
+<span class="nc" id="L41">                linhaPartida = linha.split(&quot;:&quot;, 2);</span>
+<span class="nc bnc" id="L42" title="All 7 branches missed.">                switch(linhaPartida[0]) {</span>
+                    case &quot;Fornecedor&quot;:
+<span class="nc" id="L44">                        Comercializador c = Comercializador.parse(linhaPartida[1], rand);</span>
+<span class="nc" id="L45">                        simulador.addComercializador(c);</span>
+<span class="nc" id="L46">                        break;</span>
+                    case &quot;Casa&quot;:
+<span class="nc" id="L48">                        ultimaCasa = CasaInteligente.parse(simulador, linhaPartida[1]);</span>
+<span class="nc" id="L49">                        simulador.addCasa(ultimaCasa);</span>
+<span class="nc" id="L50">                        ultimaDivisao = null;</span>
+<span class="nc" id="L51">                        break;</span>
+                    case &quot;Divisao&quot;:
+<span class="nc bnc" id="L53" title="All 2 branches missed.">                        if (ultimaCasa == null) throw new LinhaIncorretaException();</span>
+<span class="nc" id="L54">                        ultimaDivisao = linhaPartida[1];</span>
+<span class="nc" id="L55">                        ultimaCasa.addRoom(ultimaDivisao);</span>
+<span class="nc" id="L56">                        break;</span>
+                    case &quot;SmartBulb&quot;:
+<span class="nc bnc" id="L58" title="All 2 branches missed.">                        if (ultimaDivisao == null) throw new LinhaIncorretaException();</span>
+<span class="nc" id="L59">                        ultimoDispositivo = SmartBulb.parse(linhaPartida[1], rand);</span>
+<span class="nc" id="L60">                        simulador.addDispositivo(ultimoDispositivo);</span>
+<span class="nc" id="L61">                        ultimaCasa.addDevice(ultimoDispositivo);</span>
+<span class="nc" id="L62">                        ultimaCasa.addToRoom(ultimaDivisao, ultimoDispositivo.getID());</span>
+<span class="nc" id="L63">                        break;</span>
+                    case &quot;SmartCamera&quot;:
+<span class="nc bnc" id="L65" title="All 2 branches missed.">                        if (ultimaDivisao == null) throw new LinhaIncorretaException();</span>
+<span class="nc" id="L66">                        ultimoDispositivo = SmartCamera.parse(linhaPartida[1], rand);</span>
+<span class="nc" id="L67">                        simulador.addDispositivo(ultimoDispositivo);</span>
+<span class="nc" id="L68">                        ultimaCasa.addDevice(ultimoDispositivo);</span>
+<span class="nc" id="L69">                        ultimaCasa.addToRoom(ultimaDivisao, ultimoDispositivo.getID());</span>
+<span class="nc" id="L70">                        break;</span>
+                    case &quot;SmartSpeaker&quot;:
+<span class="nc bnc" id="L72" title="All 2 branches missed.">                        if (ultimaDivisao == null) throw new LinhaIncorretaException();</span>
+<span class="nc" id="L73">                        ultimoDispositivo = SmartSpeaker.parse(linhaPartida[1], rand);</span>
+<span class="nc" id="L74">                        simulador.addDispositivo(ultimoDispositivo);</span>
+<span class="nc" id="L75">                        ultimaCasa.addDevice(ultimoDispositivo);</span>
+<span class="nc" id="L76">                        ultimaCasa.addToRoom(ultimaDivisao, ultimoDispositivo.getID());</span>
+                        break;
+                }
+            }
+<span class="nc" id="L80">        } catch(LinhaIncorretaException e){}</span>
+<span class="nc" id="L81">        return simulador;</span>
+    }
+
+    List&lt;String&gt; lerFicheiro(String fileName) throws IOException {
+<span class="nc" id="L85">        return Files.readAllLines(Paths.get(fileName), StandardCharsets.UTF_8);</span>
+    }
+
+    /*
+    Recebe um simulador com a fase inicial ja realizada, e o caminho para o ficheiro com os passos de simulacao
+    Le o ficheiro, le linha a linha, e executa cada uma das transformacoes ao simulador, criando ficheiros
+    intermedios com os estados intermedios do simulador.
+     */
+    public void simular(Simulador simulador) {
+        List&lt;String&gt; linhasFicheiro;
+        try {
+<span class="nc" id="L96">            linhasFicheiro = lerFicheiro(this.filePath);</span>
+<span class="pc" id="L97">        } catch (IOException e) {</span>
+<span class="fc" id="L98">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L99">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L100">            System.out.println(&quot;| -&gt; Ficheiro nao encontrado                       |&quot;);</span>
+<span class="fc" id="L101">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L102">            return;</span>
+        }
+<span class="nc" id="L104">        Comercializador comercializador = null;</span>
+<span class="nc" id="L105">        CasaInteligente casa = null;</span>
+
+<span class="nc" id="L107">        int i=1;</span>
+
+<span class="nc bnc" id="L109" title="All 2 branches missed.">        for (String linha: linhasFicheiro) {</span>
+<span class="nc" id="L110">            String[] str = linha.split(&quot;,&quot;, 3);</span>
+<span class="nc" id="L111">            LocalDate data = parseLocalDate(str[0]);</span>
+<span class="nc" id="L112">            simulador.saltarDias(data); //assume-se que esta data e posterior a data atual</span>
+
+<span class="nc" id="L114">            String id = str[1].trim();</span>
+<span class="nc bnc" id="L115" title="All 2 branches missed.">            if ((casa = simulador.getCasa(id)) != null) {</span>
+                //evento de uma casa
+<span class="nc" id="L117">                eventoCasa(casa, str[2], simulador);</span>
+<span class="nc bnc" id="L118" title="All 2 branches missed.">            } else if ((comercializador = simulador.getComercializador(id)) != null) {</span>
+<span class="nc" id="L119">                eventoComercializador(comercializador, str[2]);</span>
+            }
+
+<span class="nc" id="L122">            simulador.createStatusFile(&quot;output/evento&quot; + i);</span>
+<span class="nc" id="L123">            i++;</span>
+        }
+        //simulador.saltarDias(1); //salta um dia para aplicar as ultimas mudancas
+
+<span class="nc" id="L127">    }</span>
+
+    public void eventoComercializador(Comercializador c, String input) {
+<span class="fc" id="L130">        String[] str = input.split(&quot;,&quot;,2);</span>
+<span class="fc bfc" id="L131" title="All 2 branches covered.">        if (str[0].trim().equals(&quot;alteraValorDesconto&quot;)) {</span>
+<span class="nc" id="L132">            double impostos = Double.valueOf(str[1].trim());</span>
+<span class="nc" id="L133">            c.setFatorImpostos(impostos);</span>
+<span class="pc bfc" id="L134" title="All 2 branches covered.">        } else if (str[0].trim().equals(&quot;alteraValorCusto&quot;)) {</span>
+<span class="nc" id="L135">            double custo = Double.valueOf(str[1].trim());</span>
+<span class="nc" id="L136">            c.setCustoDiarioKwh(custo);</span>
+        }
+<span class="fc" id="L138">    }</span>
+
+    public void eventoCasa(CasaInteligente casa, String input, Simulador simulador) {
+<span class="fc" id="L141">        String[] str = input.split(&quot;,&quot;);</span>
+<span class="fc" id="L142">        String param1 = str[0].trim();</span>
+<span class="fc" id="L143">        Comercializador c = null;</span>
+<span class="fc" id="L144">        SmartDevice sd = null;</span>
+
+<span class="fc bfc" id="L146" title="All 2 branches covered.">        if (casa.hasRoom(param1)) {</span>
+            //evento sobre divisao de casa
+<span class="nc bnc" id="L148" title="All 2 branches missed.">            if (str[1].trim().equals(&quot;setAllOff&quot;)) {</span>
+                //Desligar todos os dispositivos da divisao
+<span class="nc" id="L150">                casa.setAllOn(param1, false);</span>
+<span class="nc bnc" id="L151" title="All 2 branches missed.">            } else if (str[1].trim().equals(&quot;setAllOn&quot;)) {</span>
+<span class="nc" id="L152">                casa.setAllOn(param1, true);</span>
+            }
+<span class="pc bfc" id="L154" title="All 2 branches covered.">        } else if ((c = simulador.getComercializador(param1)) != null) {</span>
+<span class="fc" id="L155">            casa.setComercializador(c);</span>
+<span class="pc bpc" id="L156" title="1 of 2 branches missed.">        } else if ((sd = simulador.getDispositivo(param1)) != null) {</span>
+<span class="nc bnc" id="L157" title="All 2 branches missed.">            if (str[1].trim().equals(&quot;setOn&quot;)) {</span>
+                //Ligar o dispositivo
+<span class="nc" id="L159">                sd.turnOn();</span>
+<span class="nc bnc" id="L160" title="All 2 branches missed.">            } else if (str[1].trim().equals(&quot;setOff&quot;)) {</span>
+<span class="nc" id="L161">                sd.turnOff();</span>
+            }
+        }
+<span class="fc" id="L164">    }</span>
+
+    public LocalDate parseLocalDate(String str) {
+<span class="fc" id="L167">        String s[] = str.split(&quot;\\.&quot;, 3);</span>
+<span class="fc" id="L168">        int ano = Integer.valueOf(s[0]);</span>
+<span class="nc" id="L169">        int mes = Integer.valueOf(s[1]);</span>
+<span class="nc" id="L170">        int dia = Integer.valueOf(s[2]);</span>
+<span class="nc" id="L171">        LocalDate date = LocalDate.of(ano,mes,dia);</span>
+<span class="nc" id="L172">        return date;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

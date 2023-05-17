@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>SmartCamera.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">SmartCamera.java</span></div><h1>SmartCamera.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.util.Random;
+import java.util.Scanner;
+
+public class SmartCamera extends SmartDevice{
+    private int width;
+    private int height;
+    private double tamanhoFicheiro;
+
+    public SmartCamera(){
+<span class="fc" id="L12">        super(700);</span>
+        //this.res = 0;
+<span class="fc" id="L14">        this.width = 0;</span>
+<span class="fc" id="L15">        this.height = 0;</span>
+<span class="fc" id="L16">        this.tamanhoFicheiro = 0;</span>
+<span class="fc" id="L17">        calcularConsumoDiario();</span>
+<span class="fc" id="L18">    }</span>
+
+    public SmartCamera(Modo modo,
+                       int width, int height, double tamanhoFicheiro) {
+<span class="fc" id="L22">        super(700,modo);</span>
+<span class="fc" id="L23">        this.width = width;</span>
+<span class="fc" id="L24">        this.height = height;</span>
+<span class="fc" id="L25">        this.tamanhoFicheiro = tamanhoFicheiro;</span>
+<span class="fc" id="L26">        calcularConsumoDiario();</span>
+<span class="fc" id="L27">    }</span>
+
+    public SmartCamera(Modo modo,
+                       int width, int height, double tamanhoFicheiro, double consumoDiario) {
+<span class="fc" id="L31">        super(00,modo);</span>
+<span class="fc" id="L32">        this.width = width;</span>
+<span class="fc" id="L33">        this.height = height;</span>
+<span class="fc" id="L34">        this.tamanhoFicheiro = tamanhoFicheiro;</span>
+<span class="fc" id="L35">        setConsumoDiario(consumoDiario);</span>
+<span class="fc" id="L36">    }</span>
+
+    public SmartCamera(SmartCamera c) {
+<span class="fc" id="L39">        super(c);</span>
+<span class="fc" id="L40">        this.width = c.width;</span>
+<span class="fc" id="L41">        this.height = c.height;</span>
+<span class="fc" id="L42">        this.tamanhoFicheiro = c.tamanhoFicheiro;</span>
+<span class="fc" id="L43">    }</span>
+
+    @Override
+    public void calcularConsumoDiario() {
+        //Consumo em funcao do tamanho do ficheiro que geram * a resolucao da imagem
+<span class="fc" id="L48">        double fator = (this.width * this.height) / 5000000.0; // /1000 para tornar o numero mais pequeno</span>
+<span class="fc" id="L49">        double consumo = 0.5 + fator * (tamanhoFicheiro / 100.0);</span>
+<span class="fc" id="L50">        setConsumoDiario(consumo);</span>
+<span class="fc" id="L51">    }</span>
+
+    public static SmartCamera parse(String linha, Random random) {
+<span class="fc" id="L54">        String[] linhaPartida = linha.split(&quot;,&quot;, 3); //no maximo 3 parametros</span>
+<span class="fc" id="L55">        String resolucaoStr = linhaPartida[0];</span>
+<span class="fc" id="L56">        String resolucao = resolucaoStr.substring(1, resolucaoStr.length()-1);</span>
+<span class="fc" id="L57">        String[] resPartida = resolucao.split(&quot;x&quot;, 2);</span>
+<span class="fc" id="L58">        int width = Integer.valueOf(resPartida[0]);</span>
+<span class="nc" id="L59">        int height = Integer.valueOf(resPartida[1]);</span>
+
+<span class="nc" id="L61">        double tamanhoFicheiro = Double.valueOf(linhaPartida[1]);</span>
+<span class="nc" id="L62">        double consumo = Double.valueOf(linhaPartida[2]);</span>
+
+<span class="nc bnc" id="L64" title="All 2 branches missed.">        Modo modo = random.nextBoolean() ? Modo.ON : Modo.OFF;</span>
+
+<span class="nc" id="L66">        SmartCamera sC = new SmartCamera(modo, width, height, tamanhoFicheiro, consumo);</span>
+<span class="nc" id="L67">        return sC;</span>
+    }
+
+    public static SmartCamera criarSmartCamera(Scanner scanner) {
+<span class="fc" id="L71">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L72">        System.out.println(&quot;+-------------------------------------------------------------+&quot;);</span>
+<span class="fc" id="L73">        System.out.println(&quot;| -&gt; Escreve no formato Modo,Largura,Altura,TamanhoFicheiro   |&quot;);</span>
+<span class="fc" id="L74">        System.out.println(&quot;| -&gt; Exemplo: ON,1920,1080,50                                 |&quot;);</span>
+<span class="fc" id="L75">        System.out.println(&quot;+-------------------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L76">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L77">        String input = scanner.nextLine();</span>
+<span class="fc" id="L78">        String[] idCustoModoLarguraAlturaTamanho = input.split(&quot;,&quot;, 4);</span>
+<span class="pc bpc" id="L79" title="1 of 4 branches missed.">        Modo modo = idCustoModoLarguraAlturaTamanho[0].equals(&quot;OFF&quot;) ? Modo.OFF : idCustoModoLarguraAlturaTamanho[0].equals(&quot;ON&quot;) ? Modo.ON : null;</span>
+<span class="fc" id="L80">        int largura = Integer.valueOf(idCustoModoLarguraAlturaTamanho[1]);</span>
+<span class="fc" id="L81">        int altura = Integer.valueOf(idCustoModoLarguraAlturaTamanho[2]);</span>
+<span class="fc" id="L82">        double tamanho = Double.valueOf(idCustoModoLarguraAlturaTamanho[3]);</span>
+<span class="fc" id="L83">        SmartCamera ret = new SmartCamera(modo, largura, altura, tamanho);</span>
+<span class="fc" id="L84">        return ret;</span>
+    }
+
+    public String toString() {
+<span class="fc" id="L88">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L89">        sb.append(&quot;Camera, id: &quot;)</span>
+<span class="fc" id="L90">                .append(this.getID())</span>
+<span class="fc" id="L91">                .append(&quot;, &quot;)</span>
+<span class="fc" id="L92">                .append(this.getModo())</span>
+<span class="fc" id="L93">                .append(&quot;, (&quot;)</span>
+<span class="fc" id="L94">                .append(this.width)</span>
+<span class="fc" id="L95">                .append(&quot;x&quot;)</span>
+<span class="fc" id="L96">                .append(this.height)</span>
+<span class="fc" id="L97">                .append(&quot;)&quot;);</span>
+<span class="fc" id="L98">        return sb.toString();</span>
+    }
+
+    @Override
+    public SmartCamera clone() {
+<span class="fc" id="L103">        return new SmartCamera(this);</span>
+    }
+
+    public int getWidth() {
+<span class="fc" id="L107">        return width;</span>
+    }
+
+    public void setWidth(int width) {
+<span class="fc" id="L111">        this.width = width;</span>
+<span class="fc" id="L112">    }</span>
+
+    public int getHeight() {
+<span class="fc" id="L115">        return height;</span>
+    }
+
+    public void setHeight(int height) {
+<span class="fc" id="L119">        this.height = height;</span>
+<span class="fc" id="L120">    }</span>
+
+    public double getTamanhoFicheiro() {
+<span class="fc" id="L123">        return tamanhoFicheiro;</span>
+    }
+
+    public void setTamanhoFicheiro(double tamanhoFicheiro) {
+<span class="fc" id="L127">        this.tamanhoFicheiro = tamanhoFicheiro;</span>
+<span class="fc" id="L128">    }</span>
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

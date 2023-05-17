@@ -1,0 +1,92 @@
+* Starting client
+* Connecting to master process on port 13695
+* Analyzing classpath: 
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/test-classes
+  - /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/target/classes
+  - /home/rogan/.m2/repository/junit/junit/4.13.1/junit-4.13.1.jar
+  - /home/rogan/.m2/repository/org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter/5.8.1/junit-jupiter-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-params/5.8.1/junit-jupiter-params-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-engine/5.8.1/junit-jupiter-engine-5.8.1.jar
+  - /home/rogan/.m2/repository/org/junit/jupiter/junit-jupiter-api/5.9.2/junit-jupiter-api-5.9.2.jar
+  - /home/rogan/.m2/repository/org/opentest4j/opentest4j/1.2.0/opentest4j-1.2.0.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-commons/1.9.2/junit-platform-commons-1.9.2.jar
+  - /home/rogan/.m2/repository/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
+  - /home/rogan/.m2/repository/org/junit/vintage/junit-vintage-engine/5.9.2/junit-vintage-engine-5.9.2.jar
+  - /home/rogan/.m2/repository/org/junit/platform/junit-platform-engine/1.9.2/junit-platform-engine-1.9.2.jar
+* Finished analyzing classpath
+* Generating tests for class smarthouse.Comercializador
+* Test criteria:
+  - Line Coverage
+  - Branch Coverage
+  - Exception
+  - Mutation testing (weak)
+  - Method-Output Coverage
+  - Top-Level Method Coverage
+  - No-Exception Top-Level Method Coverage
+  - Context Branch Coverage
+* Setting up search algorithm for whole suite generation
+* Loaded 63 tests from /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/evosuite-seeds/smarthouse.Comercializador.seed
+* Total number of test goals: 
+  - Line 112
+  - Branch 41
+  - Exception 0
+  - MutationFactory 131
+  - Output 44
+  - Method 23
+  - MethodNoException 23
+  - CBranchFitnessFactory 41
+* Using seed 1684271070834
+* Starting evolution
+* Search finished after 51s and 70 generations, 41516 statements, best individual has fitness: 52.34761904761905
+* Writing sequences to pool
+* Minimizing test suite
+* Going to analyze the coverage criteria
+* Coverage analysis for criterion LINE
+* Coverage of criterion LINE: 96%
+* Total number of goals: 112
+* Number of covered goals: 108
+* Coverage analysis for criterion BRANCH
+* Coverage of criterion BRANCH: 90%
+* Total number of goals: 41
+* Number of covered goals: 37
+* Coverage analysis for criterion EXCEPTION
+* Coverage of criterion EXCEPTION: 100%
+* Total number of goals: 20
+* Number of covered goals: 20
+* Coverage analysis for criterion WEAKMUTATION
+* Coverage of criterion WEAKMUTATION: 83%
+* Total number of goals: 131
+* Number of covered goals: 109
+* Coverage analysis for criterion OUTPUT
+* Coverage of criterion OUTPUT: 75%
+* Total number of goals: 44
+* Number of covered goals: 33
+* Coverage analysis for criterion METHOD
+* Coverage of criterion METHOD: 100%
+* Total number of goals: 23
+* Number of covered goals: 23
+* Coverage analysis for criterion METHODNOEXCEPTION
+* Coverage of criterion METHODNOEXCEPTION: 96%
+* Total number of goals: 23
+* Number of covered goals: 22
+* Coverage analysis for criterion CBRANCH
+* Coverage of criterion CBRANCH: 90%
+* Total number of goals: 41
+* Number of covered goals: 37
+* Generated 54 tests with total length 191
+* Resulting test suite's coverage: 91% (average coverage for all fitness functions)
+* Generating assertions
+* Resulting test suite's mutation score: 61%
+* Compiling and checking tests
+* Permissions denied during test execution: 
+  - java.lang.RuntimePermission: 
+         writeFileDescriptor: 1
+  - java.net.SocketPermission: 
+         connect,resolve 200.42.42.0:6: 1
+         connect,resolve 192.168.1.42:2: 1
+         listen,resolve localhost:1703: 1
+         and other 4 cases of action/name for this exception class
+* Writing JUnit test case 'Comercializador_ESTest' to /home/rogan/Desktop/3ano2sem/ats/ATS_Project/POO_Project/.evosuite/tmp_2023_05_16_21_52_34/tests
+* Done!
+

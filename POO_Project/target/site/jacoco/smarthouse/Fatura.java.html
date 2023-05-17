@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>Fatura.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">Fatura.java</span></div><h1>Fatura.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+
+public class Fatura implements Serializable {
+    private String nome; //nome do dono da casa
+    private Periodo periodo; //guarda o inicio e fim da fatura
+    private double consumo; //kwh
+    private double custo; //euros
+
+<span class="fc" id="L12">    public Fatura(String nome, LocalDate inicio, LocalDate fim, double consumo, double custo) {</span>
+<span class="fc" id="L13">        this.nome = nome;</span>
+<span class="fc" id="L14">        this.consumo = consumo;</span>
+<span class="fc" id="L15">        this.custo = custo;</span>
+<span class="fc" id="L16">        this.periodo = new Periodo(inicio,fim);</span>
+<span class="fc" id="L17">    }</span>
+
+<span class="fc" id="L19">    public Fatura(Fatura fatura) {</span>
+<span class="fc" id="L20">        this.nome = fatura.nome;</span>
+<span class="fc" id="L21">        this.consumo = fatura.consumo;</span>
+<span class="fc" id="L22">        this.custo = fatura.custo;</span>
+<span class="fc" id="L23">        this.periodo = fatura.periodo;</span>
+<span class="fc" id="L24">    }</span>
+
+    public Fatura clone() {
+<span class="fc" id="L27">        return new Fatura(this);</span>
+    }
+
+    public String toString() {
+<span class="fc" id="L31">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L32">        sb.append(&quot;\n&quot;);</span>
+<span class="fc" id="L33">        sb.append(&quot;Fatura para a casa de &quot;);</span>
+<span class="fc" id="L34">        sb.append(this.nome);</span>
+<span class="fc" id="L35">        sb.append(&quot;\n&quot;);</span>
+<span class="fc" id="L36">        sb.append(periodo.toString());</span>
+<span class="fc" id="L37">        sb.append(&quot;\nConsumo: &quot;);</span>
+<span class="fc" id="L38">        sb.append(String.format(&quot;%.1f&quot;, this.consumo));</span>
+<span class="fc" id="L39">        sb.append(&quot;Kwh, Custo: &quot;);</span>
+<span class="fc" id="L40">        sb.append(String.format(&quot;%.1f&quot;, this.custo));</span>
+<span class="fc" id="L41">        sb.append(&quot;\n&quot;);</span>
+<span class="fc" id="L42">        return sb.toString();</span>
+    }
+
+<span class="fc" id="L45">    public String getNome(){return this.nome;}</span>
+
+    public Periodo getPeriodo() {
+<span class="fc" id="L48">        return this.periodo;</span>
+    }
+
+    public double getCusto() {
+<span class="fc" id="L52">        return this.custo;</span>
+    }
+
+    public double getConsumo() {
+<span class="fc" id="L56">        return this.consumo;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

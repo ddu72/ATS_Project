@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>CasaInteligente.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">POO_Project</a> &gt; <a href="index.source.html" class="el_package">smarthouse</a> &gt; <span class="el_source">CasaInteligente.java</span></div><h1>CasaInteligente.java</h1><pre class="source lang-java linenums">package smarthouse;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+import java.util.*;
+import java.util.stream.Collectors;
+
+
+/**
+ * A CasaInteligente faz a gestao dos SmartDevices que existem e dos
+ * espacos (as salas) que existem na casa.
+*/
+
+// mudar o metodo de procura pelos maps usei forEach que era o que sabia usar melhor mas existem metodos mais eficientes
+// exceto para a funcao turnAllOn acho que o forEach e bom nessa
+public class CasaInteligente implements Serializable, PendingChanges{
+    private Comercializador comercializador;
+    private Comercializador comercializadorToChange;
+    private String nome;
+    private int nif;
+    private Map&lt;String, SmartDevice&gt; devices;
+    private Map&lt;String, List&lt;String&gt;&gt; locations;
+    private List&lt;Fatura&gt; faturas;
+
+<span class="fc" id="L25">    public CasaInteligente() {</span>
+        // initialise instance variables
+<span class="fc" id="L27">        this.nome = &quot;N/A&quot;;</span>
+<span class="fc" id="L28">        this.nif = -1;</span>
+<span class="fc" id="L29">        this.devices = new HashMap();</span>
+<span class="fc" id="L30">        this.locations = new HashMap();</span>
+<span class="fc" id="L31">        this.comercializador = null;</span>
+<span class="fc" id="L32">        this.comercializadorToChange = null;</span>
+<span class="fc" id="L33">        this.faturas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L34">    }</span>
+
+<span class="fc" id="L36">    public CasaInteligente(String nome, int nif, Comercializador comercializador) {</span>
+        // initialise instance variables
+<span class="fc" id="L38">        this.nome = nome;</span>
+<span class="fc" id="L39">        this.nif = nif;</span>
+<span class="fc" id="L40">        this.devices = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L41">        this.locations = new HashMap&lt;&gt;();</span>
+<span class="fc" id="L42">        this.comercializador = comercializador;</span>
+<span class="fc" id="L43">        this.comercializadorToChange = null;</span>
+<span class="fc" id="L44">        this.faturas = new ArrayList&lt;&gt;();</span>
+<span class="fc" id="L45">    }</span>
+
+<span class="fc" id="L47">    public CasaInteligente(CasaInteligente casaInteligente) {</span>
+<span class="fc" id="L48">        this.nome = casaInteligente.nome;</span>
+<span class="fc" id="L49">        this.nif = casaInteligente.nif;</span>
+<span class="fc" id="L50">        this.devices = casaInteligente.devices.entrySet().stream()</span>
+<span class="pc" id="L51">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; e.getValue().clone()));</span>
+<span class="fc" id="L52">        this.locations = casaInteligente.locations.entrySet().stream()</span>
+<span class="fc" id="L53">                .collect(Collectors.toMap(e -&gt; e.getKey(), e -&gt; new ArrayList&lt;&gt;(e.getValue())));</span>
+<span class="fc" id="L54">        this.comercializador = casaInteligente.comercializador.clone();</span>
+<span class="fc bfc" id="L55" title="All 2 branches covered.">        if (casaInteligente.comercializadorToChange != null) {</span>
+<span class="fc" id="L56">            this.comercializadorToChange = casaInteligente.comercializadorToChange.clone();</span>
+<span class="fc" id="L57">        } else {</span>
+<span class="fc" id="L58">            this.comercializadorToChange = null;</span>
+        }
+<span class="fc" id="L60">        this.faturas = casaInteligente.faturas.stream().map(Fatura::clone).collect(Collectors.toList());</span>
+<span class="fc" id="L61">    }</span>
+
+    public void setDeviceOn(String devCode) {
+<span class="fc" id="L64">        this.devices.get(devCode).turnOn();</span>
+<span class="fc" id="L65">    }</span>
+
+    public boolean existsDevice(String id) {
+<span class="fc" id="L68">        return this.devices.keySet().contains(id);</span>
+    }
+
+    public void addDevice(SmartDevice s) {
+<span class="fc" id="L72">        this.devices.put(s.getID(), s);</span>
+<span class="fc" id="L73">    }</span>
+
+    public void setOn(String s, boolean b) {
+<span class="fc bfc" id="L76" title="All 2 branches covered.">        if (this.devices.get(s) != null) {</span>
+<span class="fc" id="L77">            this.devices.get(s).setOn(b); //assume que nao recebe um clone</span>
+            //se receber um clone e suposto meter de novo?
+        }
+<span class="fc" id="L80">    }</span>
+
+
+    public void setAllOn(boolean b) {
+<span class="fc bfc" id="L84" title="All 2 branches covered.">        for (SmartDevice smartDevice: this.devices.values()) {</span>
+<span class="fc" id="L85">            smartDevice.setOn(b);</span>
+        }
+<span class="fc" id="L87">    }</span>
+
+    /*
+    Recebe uma lista de divisoes em String e mostra ao utilizador para escolher uma
+     */
+    public String escolherDivisao(Scanner scanner) {
+<span class="fc" id="L93">        Set&lt;String&gt; divisoes = this.locations.keySet();</span>
+<span class="fc" id="L94">        System.out.println(&quot;\n+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L95">        System.out.println(&quot;| -&gt; Divisoes disponiveis                          |&quot;);</span>
+<span class="fc bfc" id="L96" title="All 2 branches covered.">        for (String div: divisoes) {</span>
+<span class="fc" id="L97">            System.out.println(div);</span>
+        }
+<span class="fc" id="L99">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L100">        System.out.println(&quot;| -&gt; Escreva o nome da divisao que quer            |&quot;);</span>
+<span class="fc" id="L101">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L102">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="fc" id="L103">        String escolha = scanner.nextLine(); //assume-se que escolheu uma opcao valida</span>
+<span class="fc bfc" id="L104" title="All 2 branches covered.">        if (divisoes.contains(escolha)) {</span>
+<span class="fc" id="L105">            return escolha;</span>
+        } else {
+<span class="fc" id="L107">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L108">            System.out.println(&quot;| -&gt; Essa Divisao nao existe                       |&quot;);</span>
+<span class="fc" id="L109">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L110">            return &quot;&quot;;</span>
+        }
+    }
+
+    /*
+    Recebe uma string que representa a divisao, e um boleano que indica se e pra ligar ou desligar os
+    dispositivos dessa divisao
+     */
+    public void setAllOn(String divisao, boolean b) {
+<span class="fc bfc" id="L119" title="All 2 branches covered.">        if (!locations.containsKey(divisao)) return; //nao contem esta divisao</span>
+<span class="fc" id="L120">        List&lt;String&gt; deviceList = locations.get(divisao);</span>
+<span class="fc bfc" id="L121" title="All 2 branches covered.">        for (String str: deviceList) {</span>
+<span class="fc" id="L122">            SmartDevice dev = devices.get(str);</span>
+<span class="pc bpc" id="L123" title="1 of 2 branches missed.">            if (dev != null) {</span>
+<span class="nc" id="L124">                dev.setOn(b);</span>
+            }
+        }
+<span class="fc" id="L127">    }</span>
+
+    public void listarDispositivos() {
+<span class="fc bfc" id="L130" title="All 2 branches covered.">        for (SmartDevice sd: this.devices.values()) {</span>
+<span class="fc" id="L131">            System.out.println(sd);</span>
+        }
+<span class="fc" id="L133">    }</span>
+
+    /*
+    Devolve uma string com o conteudo inteiro da casa, ou seja,
+    contendo as divisoes e para cada divisao os dispositivos delas
+     */
+    public String conteudo() {
+<span class="fc" id="L140">        StringBuilder sB = new StringBuilder();</span>
+<span class="fc bfc" id="L141" title="All 2 branches covered.">        for (String divisao: this.locations.keySet()) {</span>
+<span class="fc" id="L142">            List&lt;String&gt; dispIds = this.locations.get(divisao);</span>
+<span class="fc" id="L143">            sB.append(&quot;Divisao: &quot;);</span>
+<span class="fc" id="L144">            sB.append(divisao);</span>
+<span class="fc" id="L145">            sB.append(&quot;\n&quot;);</span>
+<span class="fc bfc" id="L146" title="All 2 branches covered.">            if (!dispIds.isEmpty()) {</span>
+<span class="fc bfc" id="L147" title="All 2 branches covered.">                for (String id: dispIds) {</span>
+<span class="fc" id="L148">                    SmartDevice sd = this.devices.get(id);</span>
+<span class="fc bfc" id="L149" title="All 2 branches covered.">                    if (sd != null) {</span>
+                        //dispositivo existe
+<span class="fc" id="L151">                        sB.append(sd.toString());</span>
+<span class="fc" id="L152">                        sB.append(&quot;\n&quot;);</span>
+                    }
+                }
+            }
+        }
+<span class="fc" id="L157">        return sB.toString();</span>
+    }
+
+    public boolean existsRooms() {
+<span class="fc bfc" id="L161" title="All 2 branches covered.">        return !this.locations.isEmpty();</span>
+    }
+
+    public void addRoom(String s) {
+<span class="fc" id="L165">        this.locations.put(s, new ArrayList&lt;&gt;());</span>
+<span class="fc" id="L166">    }</span>
+
+    public boolean hasRoom(String s) {
+<span class="fc" id="L169">        return this.locations.keySet().contains(s);</span>
+    }
+
+    public void addToRoom (String s1, String s2) {
+<span class="fc bfc" id="L173" title="All 2 branches covered.">        if (this.locations.get(s1) == null) {</span>
+<span class="fc" id="L174">            addRoom(s1);</span>
+        }
+<span class="fc" id="L176">        this.locations.get(s1).add(s2);</span>
+<span class="fc" id="L177">    }</span>
+
+    public boolean roomHasDevice (String s1, String s2) {
+<span class="fc" id="L180">        List&lt;String&gt; devices = this.locations.get(s1);</span>
+<span class="fc bfc" id="L181" title="All 4 branches covered.">        if (devices != null &amp;&amp; !devices.isEmpty()) {</span>
+<span class="fc" id="L182">            return devices.contains(s2);</span>
+        }
+<span class="fc" id="L184">        return false;</span>
+    }
+
+    public double precoPorDia() {
+<span class="fc" id="L188">        double ret = 0;</span>
+<span class="fc bfc" id="L189" title="All 2 branches covered.">        for (SmartDevice smartDevice: devices.values()) {</span>
+<span class="fc" id="L190">            ret += comercializador.precoDiaPorDispositivo(smartDevice);</span>
+        }
+<span class="fc" id="L192">        return ret;</span>
+    }
+
+    public void saltarParaData(LocalDate inicio, LocalDate dataFinal) {
+<span class="fc bfc" id="L196" title="All 2 branches covered.">        if (this.devices.isEmpty()) {</span>
+            //A casa nao tem dispositivos, para esta funcao
+<span class="fc" id="L198">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L199">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L200">            System.out.println(&quot; -&gt; A casa &quot; + this.toString() + &quot; nao tem dispositivos&quot;);</span>
+<span class="fc" id="L201">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L202">            return;</span>
+        }
+
+<span class="fc" id="L205">        double consumo = 0;</span>
+<span class="fc" id="L206">        double custo = 0;</span>
+
+<span class="fc bfc" id="L208" title="All 2 branches covered.">        for (SmartDevice smartDevice: this.devices.values()) {</span>
+<span class="fc" id="L209">            consumo += smartDevice.consumoAte(inicio, dataFinal);</span>
+<span class="fc" id="L210">            custo += smartDevice.custoAte(this.comercializador, inicio,  dataFinal);</span>
+        }
+<span class="fc" id="L212">        faturar(inicio,dataFinal,consumo,custo);</span>
+<span class="fc" id="L213">    }</span>
+
+    public void faturar(LocalDate inicio, LocalDate fim, double consumo, double custo) {
+<span class="fc" id="L216">        Fatura fatura = new Fatura(this.nome,inicio,fim,consumo,custo);</span>
+<span class="fc" id="L217">        this.faturas.add(fatura);</span>
+<span class="fc" id="L218">        this.comercializador.addFatura(fatura);</span>
+<span class="fc" id="L219">    }</span>
+
+    public static CasaInteligente escolherCasa(Map&lt;Integer, CasaInteligente&gt; casas, Scanner scanner) {
+<span class="fc bfc" id="L222" title="All 2 branches covered.">        if (casas.isEmpty()) {</span>
+<span class="fc" id="L223">            System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L224">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L225">            System.out.println(&quot;| -&gt; Nao existem casas                             |&quot;);</span>
+<span class="fc" id="L226">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L227">            return null;</span>
+        }
+<span class="fc bfc" id="L229" title="All 2 branches covered.">        for (CasaInteligente casa: casas.values()) {</span>
+<span class="fc" id="L230">            System.out.println(casa.toString());</span>
+        }
+<span class="fc" id="L232">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L233">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L234">        System.out.println(&quot;| -&gt; Escreve o nif da casa que queres              |&quot;);</span>
+<span class="fc" id="L235">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L236">        System.out.println(&quot;Insere aqui a tua resposta: &quot;);</span>
+<span class="nc" id="L237">        int nif = Integer.parseInt(scanner.nextLine()); //assume-se que escolheu uma opcao valida</span>
+<span class="nc bnc" id="L238" title="All 2 branches missed.">        if (casas.containsKey(nif)) {</span>
+<span class="nc" id="L239">            return casas.get(nif);</span>
+        } else {
+<span class="nc" id="L241">            System.out.println(&quot;\n&quot;);</span>
+<span class="nc" id="L242">            System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="nc" id="L243">            System.out.println(&quot;| -&gt; Nao ha nenhuma casa com este nif              |&quot;);</span>
+<span class="nc" id="L244">            System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="nc" id="L245">            return null;</span>
+        }
+    }
+
+    public static CasaInteligente parse(Simulador simulador, String linha) {
+<span class="fc" id="L250">        String[] linhaPartida = linha.split(&quot;,&quot;, 3); //no maximo 3 parametros</span>
+<span class="fc" id="L251">        String nome = linhaPartida[0];</span>
+<span class="nc" id="L252">        int nif = Integer.valueOf(linhaPartida[1]);</span>
+<span class="nc" id="L253">        String nomeComercializador = linhaPartida[2];</span>
+<span class="nc" id="L254">        Comercializador c = simulador.getComercializador(nomeComercializador);</span>
+
+<span class="nc" id="L256">        CasaInteligente casa = new CasaInteligente(nome, nif, c);</span>
+<span class="nc" id="L257">        return casa;</span>
+    }
+
+    public void addAllDevices(Map&lt;String, SmartDevice&gt; disps) {
+<span class="fc bfc" id="L261" title="All 2 branches covered.">        for (Map.Entry&lt;String, SmartDevice&gt; sd: this.devices.entrySet()) {</span>
+<span class="fc" id="L262">            disps.put(sd.getKey(), sd.getValue());</span>
+        }
+<span class="fc" id="L264">    }</span>
+
+    public Fatura getFatura(Periodo periodo) {
+<span class="fc bfc" id="L267" title="All 2 branches covered.">        for (Fatura fatura: this.faturas) {</span>
+<span class="nc bnc" id="L268" title="All 2 branches missed.">            if (fatura.getPeriodo().equals(periodo)) {</span>
+<span class="nc" id="L269">                return fatura;</span>
+            }
+        }
+<span class="fc" id="L272">        System.out.println(&quot;\n&quot;);</span>
+<span class="fc" id="L273">        System.out.println(&quot;+--------------------------------------------------+&quot;);</span>
+<span class="fc" id="L274">        System.out.println(&quot;| -&gt; Nao encontrou fatura neste periodo            |&quot;);</span>
+<span class="fc" id="L275">        System.out.println(&quot;+--------------------------------------------------+\n&quot;);</span>
+<span class="fc" id="L276">        return null;</span>
+    }
+
+    public String getNome() {
+<span class="fc" id="L280">        return nome;</span>
+    }
+
+    public void setNome(String nome) {
+<span class="fc" id="L284">        this.nome = nome;</span>
+<span class="fc" id="L285">    }</span>
+
+    public int getNif() {
+<span class="fc" id="L288">        return nif;</span>
+    }
+
+    public void setNif(int nif) {
+<span class="fc" id="L292">        this.nif = nif;</span>
+<span class="fc" id="L293">    }</span>
+
+    public Map&lt;String, SmartDevice&gt; getDevices() {
+<span class="fc" id="L296">        return devices;</span>
+    }
+
+    public void setDevices(Map&lt;String, SmartDevice&gt; devices) {
+<span class="fc" id="L300">        this.devices = devices;</span>
+<span class="fc" id="L301">    }</span>
+
+    public Map&lt;String, List&lt;String&gt;&gt; getLocations() {
+<span class="fc" id="L304">        return locations;</span>
+    }
+
+    public void setLocations(Map&lt;String, List&lt;String&gt;&gt; locations) {
+<span class="fc" id="L308">        this.locations = locations;</span>
+<span class="fc" id="L309">    }</span>
+
+    public Comercializador getComercializador() {
+        //comercializador antes das mudancas pendentes
+<span class="fc" id="L313">        return comercializador;</span>
+    }
+
+    public void setComercializador(Comercializador comercializador) {
+        //coloca o novo comercializador nas mudancas pendentes
+<span class="fc" id="L318">        this.comercializadorToChange = comercializador;</span>
+<span class="fc" id="L319">    }</span>
+
+    public List&lt;Fatura&gt; getFaturas() {
+<span class="fc" id="L322">        return faturas;</span>
+    }
+
+    public void setFaturas(List&lt;Fatura&gt; faturas) {
+<span class="fc" id="L326">        this.faturas = new ArrayList&lt;&gt;(faturas);</span>
+<span class="fc" id="L327">    }</span>
+
+    public CasaInteligente clone() {
+<span class="fc" id="L330">        return new CasaInteligente(this);</span>
+    }
+
+    @Override
+    public void change() {
+<span class="fc bfc" id="L335" title="All 2 branches covered.">        if (this.comercializadorToChange != null) {</span>
+<span class="fc" id="L336">            this.comercializador = this.comercializadorToChange;</span>
+<span class="fc" id="L337">            this.comercializadorToChange = null;</span>
+        }
+<span class="fc" id="L339">    }</span>
+
+    public String toString() {
+<span class="fc" id="L342">        StringBuilder sb = new StringBuilder();</span>
+<span class="fc" id="L343">        sb.append(&quot;Casa de &quot;);</span>
+<span class="fc" id="L344">        sb.append(this.nome);</span>
+<span class="fc" id="L345">        sb.append(&quot; (nif: &quot;);</span>
+<span class="fc" id="L346">        sb.append(this.nif);</span>
+<span class="fc" id="L347">        sb.append(&quot;, Fornecedor: &quot;);</span>
+<span class="fc" id="L348">        sb.append(this.comercializador.toString());</span>
+<span class="fc" id="L349">        sb.append(&quot;)&quot;);</span>
+<span class="fc" id="L350">        return sb.toString();</span>
+    }
+
+    public boolean equals(Object o) {
+<span class="fc bfc" id="L354" title="All 2 branches covered.">        if (this==o) return true;</span>
+<span class="fc bfc" id="L355" title="All 4 branches covered.">        if (o==null || this.getClass() != o.getClass()) return false;</span>
+<span class="fc" id="L356">        CasaInteligente casaInteligente = (CasaInteligente) o;</span>
+<span class="fc bfc" id="L357" title="All 4 branches covered.">        return this.nome.equals(casaInteligente.nome) &amp;&amp; this.nif == casaInteligente.nif;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.5.201910111838</span></div></body></html>

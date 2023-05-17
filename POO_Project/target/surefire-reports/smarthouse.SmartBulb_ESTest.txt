@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: smarthouse.SmartBulb_ESTest
+-------------------------------------------------------------------------------
+Tests run: 33, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.118 s - in smarthouse.SmartBulb_ESTest
